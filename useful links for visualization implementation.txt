@@ -1,0 +1,16 @@
+Radar Chart:
+
+*** https://github.com/alangrafu/radar-chart-d3
+
+http://bl.ocks.org/chrisrzhou/2421ac6541b68c1680f8
+
+Animated Dots:
+*** http://nyctaxi.herokuapp.com/
+*** http://chriswhong.com/data-visualization/taxitechblog1/
+
+http://zevross.com/blog/2014/09/30/use-the-amazing-d3-library-to-animate-a-path-on-a-leaflet-map/
+http://markmarkoh.com/blog/d3-dot-js-animated-map-visualization/
+http://stackoverflow.com/questions/29134048/how-do-i-animate-points-down-a-path-on-a-map-in-d3-js
+http://bl.ocks.org/zross/6a31f4ef9e778d94c204
+http://www.tnoda.com/blog/2014-04-02
+http://bl.ocks.org/mbostock/1705868

@@ -14,6 +14,7 @@
 	<!-- CSS libraries -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/radar-chart.css">
 
 	<!-- Custom CSS code -->
 	<link rel="stylesheet" href="css/style.css">
@@ -46,8 +47,8 @@
 				<ul>
 					<li><a href="#top" class="smoothScroll">Main Page</a></li>
 					<li><a href="#profile-break" class="smoothScroll">Player Profiles</a></li>
-					<li><a href="#" class="smoothScroll">Demo Link 3</a></li>
-					<li><a href="#" class="smoothScroll">Demo Link 4</a></li>
+					<li><a href="#map" class="smoothScroll">Map Visualization</a></li>
+					<li><a href="#radarchart" class="smoothScroll">Radar Chart Visualization</a></li>
 				</ul>
 				<br class="clearLeft" />
 			</div>
@@ -160,6 +161,15 @@
 	</div>
 
 	<hr class="prof-sep">
+
+
+
+	<h1 id="map">Animated Map</h1>
+	<div id="map-container"></div>
+
+	<h1 id="radarchart">Radar Chart</h1>
+	<div id="radar-chart-container"></div>
+
 
  	<!-- The main page content (just filler for this demo) -->
 	 <div id="body-text">
@@ -315,6 +325,12 @@
 	    </p>
 	</div>
 	<!-- Load data, create visualizations -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/d3.min.js"></script>
+	<script src="js/d3.tip.js"></script>
+	<script src="js/radar-chart.js"></script>
+	<script src="js/toy-data.js"></script>
 	<script src="js/main.js"></script>
 
 </body>

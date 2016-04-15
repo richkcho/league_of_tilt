@@ -43,6 +43,9 @@ function initMap() {
 
 function animateMapTimeRegion(playerID, playerLane, playerRole, timeStart, timeEnd) {
     d3.json("data/mapdata/" + playerID + ".json", function(error, mapdata) {
+        // clear old stuff in svg
+        map.svg.selectAll("circle").remove();
+        map.svg.selectAll("path").remove();
 
         // filter mapdata by role and lane
         mapdata = mapdata.filter(function(game) {
@@ -109,7 +112,7 @@ function translateAlong(path) {
 function transition(circle, path) {
     if(circle && path) {
         circle.transition()
-            .duration(1000 * path[0][0]["__data__"].length)
+            .duration(1000 * path[0][0]["__data__"].length) // duration should be proportional to in-game time
             .ease("linear")
             .attrTween("transform", translateAlong(path.node()))
             .each("end", transition);

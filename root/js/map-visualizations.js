@@ -5,6 +5,47 @@
 var map = {};
 map.scale = {};
 
+function renderMapOutput() {
+    if(!map.initialized || !playerInfoLoaded()) {
+        // wait until stuff has loaded TODO error handling
+        console.log("Map not loaded yet!");
+        return;
+    }
+
+    var summonerID = lookupPlayerID($("#summoner_name").val());
+    if(summonerID == null) {
+        // invalid player TODO error handling
+        console.log("Invalid player chosen!");
+        return;
+    }
+
+    var lane = "ANY";
+    var role = "ANY";
+    switch($("#role_selected").val()) {
+        case "top":
+            lane = "TOP";
+            role = "SOLO";
+            break;
+        case "jg":
+            lane = "JUNGLE";
+            role = "NONE";
+            break;
+        case "mid":
+            lane = "MIDDLE";
+            role = "SOLO";
+            break;
+        case "adc":
+            lane = "BOTTOM";
+            role = "DUO_CARRY";
+            break;
+        case "sup":
+            lane = "BOTTOM";
+            role = "DUO_SUPPORT";
+            break;
+    }
+
+    animateMapTimeAll(summonerID, lane, role);
+}
 
 function initMap() {
     // Domain for the current Summoner's Rift on the in-game mini-map
@@ -37,8 +78,8 @@ function initMap() {
         .attr('width', map.width)
         .attr('height', map.height);
 
+    map.initialized = true;
     console.log("Initialized map");
-    console.log(map.scale.xScale(0));
 }
 
 function animateMapTimeRegion(playerID, playerLane, playerRole, timeStart, timeEnd) {
@@ -93,10 +134,9 @@ function animateMapTimeRegion(playerID, playerLane, playerRole, timeStart, timeE
     });
 }
 
-function animateMapAll(playerID, playerLane, playerRole) {
+function animateMapTimeAll(playerID, playerLane, playerRole) {
     animateMapTimeRegion(playerID, playerLane, playerRole, "START", "END");
 }
-
 
 // Returns an attrTween for translating along the specified path element.
 function translateAlong(path) {

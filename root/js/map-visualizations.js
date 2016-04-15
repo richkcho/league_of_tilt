@@ -9,8 +9,8 @@ map.scale = {};
 function initMap() {
     // Domain for the current Summoner's Rift on the in-game mini-map
     map.scale.domain = {
-        min: {x: 0, y: 0},
-        max: {x: 14820, y: 14881}
+        min: {x: -570, y: -420},
+        max: {x: 15220, y: 14980}
     };
 
     // svg map settings
@@ -38,14 +38,16 @@ function initMap() {
         .attr('height', map.height);
 
     console.log("Initialized map");
+    console.log(map.scale.xScale(0));
 }
 
-function drawMap(playerID, playerLane, playerRole) {
+function animateMapTimeRegion(playerID, playerLane, playerRole, timeStart, timeEnd) {
     d3.json("data/mapdata/" + playerID + ".json", function(error, mapdata) {
 
         // filter mapdata by role and lane
         mapdata = mapdata.filter(function(game) {
-            return game.Lane == playerLane && game.Role == playerRole;
+            return (playerLane == "ANY" || game.Lane == playerLane) &&
+                    (playerRole == "ANY" || game.Role == playerRole);
         });
 
         var color = d3.scale.category20();
@@ -58,24 +60,38 @@ function drawMap(playerID, playerLane, playerRole) {
         for(var i = 0; i < mapdata.length; ++i) {
             var points = mapdata[i].Frames;
 
-            points.forEach(function(d, i, points){
-                points[i] = [map.scale.xScale(d[0]), map.scale.yScale(d[1])]
+            points = points.filter(function(d, i, arr) {
+                return (timeStart == "START" || timeStart <= i) &&
+                    (timeEnd == "END" || i <= timeEnd);
             });
 
-            var path = map.svg.append("path")
-                .data([points])
-                .attr("d", d3.svg.line()
-                    .tension(0) // Catmull–Rom
-                    .interpolate("linear"));
+            if(points.length > 0) {
 
-            var circle = map.svg.append("circle")
-                .attr("r", 9)
-                .attr("fill", color(i))
-                .attr("transform", "translate(" + points[0] + ")");
+                points.forEach(function (d, i, points) {
+                    points[i] = [map.scale.xScale(d[0]), map.scale.yScale(d[1])]
+                });
 
-            transition(circle, path);
+                var path = map.svg.append("path")
+                    .data([points])
+                    .attr("d", d3.svg.line()
+                        .tension(0) // Catmull–Rom
+                        .interpolate("linear"));
+
+                var circle = map.svg.append("circle")
+                    .attr("r", 9)
+                    .attr("fill", color(i))
+                    .attr("transform", "translate(" + points[0] + ")");
+
+                transition(circle, path);
+            }
+
         }
+
     });
+}
+
+function animateMapAll(playerID, playerLane, playerRole) {
+    animateMapTimeRegion(playerID, playerLane, playerRole, "START", "END");
 }
 
 
@@ -91,9 +107,11 @@ function translateAlong(path) {
 }
 
 function transition(circle, path) {
-    circle.transition()
-        .duration(10000*3)
-        .ease("linear")
-        .attrTween("transform", translateAlong(path.node()))
-        .each("end", transition);
+    if(circle && path) {
+        circle.transition()
+            .duration(1000 * path[0][0]["__data__"].length)
+            .ease("linear")
+            .attrTween("transform", translateAlong(path.node()))
+            .each("end", transition);
+    }
 }

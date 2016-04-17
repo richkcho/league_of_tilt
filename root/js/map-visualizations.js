@@ -44,6 +44,10 @@ function renderMapOutput() {
             break;
     }
 
+    // set player name
+    $("#summoner_name").val(lookupPlayerName(summonerID));
+
+    // start animation
     animateMapTimeAll(summonerID, lane, role);
 }
 
@@ -127,6 +131,8 @@ function animateMapTimeRegion(playerID, playerLane, playerRole, timeStart, timeE
                     .attr("transform", "translate(" + points[0] + ")");
 
                 transition(circle, path);
+            } else {
+                // handle this case TODO show message saying no games found
             }
 
         }

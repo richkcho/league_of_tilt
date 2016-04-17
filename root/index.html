@@ -162,19 +162,29 @@
 
 	<hr class="prof-sep">
 
+	<!-- TODO talk to alex about maybe making everything in a container? depends on how much bootstrapiness we want -->
+	<div class="container">
+		<div class="row">
+			<h1 id="map" class="section-title">Animated Map</h1>
+		</div>
 
+		<div class="row map-player-select">
+			<input type="text" id="summoner_name" value="Summoner Name">
+			<select id="role_selected">
+				<option value="top">Top</option>
+				<option value="jg">Jungle</option>
+				<option value="mid">Mid</option>
+				<option value="adc">ADC</option>
+				<option value="sup">Support</option>
+			</select>
+			<input type="button" id="btnRenderMap" value="Load Visualization" onclick="renderMapOutput()">
+		</div>
 
-	<h1 id="map">Animated Map</h1>
-	<input type="text" id="summoner_name" value="Summoner Name">
-	<select id="role_selected">
-		<option value="top">Top</option>
-		<option value="jg">Jungle</option>
-		<option value="mid">Mid</option>
-		<option value="adc">ADC</option>
-		<option value="sup">Support</option>
-	</select>
-	<input type="button" id="btnRenderMap" value="Load Visualization" onclick="renderMapOutput()">
-	<div id="map-container"></div>
+		<div class="row">
+			<div id="map-container"></div>
+		</div>
+	</div>
+
 
 	<h1 id="radarchart">Radar Chart</h1>
 	<div id="radar-chart-container"></div>

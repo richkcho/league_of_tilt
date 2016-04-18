@@ -19,12 +19,13 @@ d3.json("data/player_id_list.json", function(data) {
 d3.json("data/player_name_id_map.json", function(data) {
     util.playerIDLookup = data;
     util.playerIDLookup_loaded = true;
-    console.log("Player lookup loaded");
+    console.log("Player ID lookup loaded");
 });
 
 d3.json("data/player_id_name_map.json", function(data) {
     util.playerNameLookup = data;
     util.playerNameLookup_loaded = true;
+    console.log("Player name lookup loaded");
 });
 
 function playerInfoLoaded() {
@@ -37,4 +38,29 @@ function lookupPlayerID(name) {
 
 function lookupPlayerName(ID) {
     return util.playerNameLookup[ID.toString()];
+}
+
+function filterData(data, playerLane, playerRole) {
+    return data.filter(function(d) {
+        return (playerLane == "ANY" || d.Lane == playerLane) &&
+            (playerRole == "ANY" || d.Role == playerRole);
+    });
+}
+
+function getAverageStats(stats) {
+    var avgstats = {'Assists': 0.0, 'Deaths': 0.0, 'GameDuration': 0.0, 'Kills': 0.0, 'WinRate': 0.0};
+    var numstats = stats.length;
+
+    for(var temp = 0; temp < numgames; temp++) {
+        avgstats['Assists'] += stats[temp]['Assists'];
+        avgstats['Deaths'] += stats[temp]['Deaths'];
+        avgstats['GameDuration'] += stats[temp]['GameDuration'];
+        avgstats['Kills'] += stats[temp]['Kills'];
+        avgstats['WinRate'] += stats[temp]['Winner'];
+    }
+
+    for(var key in avgstats) {
+        avgstats[key] /= numstats;
+    }
+    return avgstats;
 }

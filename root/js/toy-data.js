@@ -2,7 +2,7 @@ var data = [
     {
         className: 'Faker', // optional can be used for styling
         axes: [
-            {axis: "strength", value: 13, yOffset: 10},
+            {axis: "GPM", value: 13, yOffset: 10},
             {axis: "intelligence", value: 6},
             {axis: "charisma", value: 5},
             {axis: "dexterity", value: 9},
@@ -12,7 +12,7 @@ var data = [
     {
         className: 'Imp',
         axes: [
-            {axis: "strength", value: 6},
+            {axis: "GPM", value: 6},
             {axis: "intelligence", value: 7},
             {axis: "charisma", value: 10},
             {axis: "dexterity", value: 13},
@@ -22,7 +22,7 @@ var data = [
     {
         className: 'Godv',
         axes: [
-            {axis: "strength", value: 5},
+            {axis: "GPM", value: 5},
             {axis: "intelligence", value: 4},
             {axis: "charisma", value: 10},
             {axis: "dexterity", value: 11},

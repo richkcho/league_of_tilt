@@ -66,7 +66,7 @@ function filterData(data, playerLane, playerRole) {
     });
 }
 
-function getPlayerAverages(stats) {
+function calculatePlayerAverages(stats) {
     var avgstats = {};
     var numstats = stats.length;
 
@@ -133,4 +133,10 @@ function normalizeAverageStats(avgstats, lane, role) {
     }
 
     return avgstatsnorm;
+}
+
+function loadPlayerStats(summonerID, callback) {
+    d3.json("data/playerstats/" + summonerID + ".json", function(err, data) {
+        callback(err, {"SummonerID": summonerID, "Stats": data});
+    });
 }

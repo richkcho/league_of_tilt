@@ -2,31 +2,34 @@ var data = [
     {
         className: 'Faker', // optional can be used for styling
         axes: [
-            {axis: "GPM", value: 13, yOffset: 10},
-            {axis: "intelligence", value: 6},
-            {axis: "charisma", value: 5},
-            {axis: "dexterity", value: 9},
-            {axis: "luck", value: 2, xOffset: -20}
+            {axis: "Kills", value: 13, yOffset: 10},
+            {axis: "Deaths", value: 6},
+            {axis: "Assists", value: 5},
+            {axis: "Gold Earned", value: 9},
+            {axis: "Win Rate", value: 2},
+            {axis: "Game Length", value: 5}
         ]
     },
     {
         className: 'Imp',
         axes: [
-            {axis: "GPM", value: 6},
-            {axis: "intelligence", value: 7},
-            {axis: "charisma", value: 10},
-            {axis: "dexterity", value: 13},
-            {axis: "luck", value: 9}
+            {axis: "Kills", value: 6},
+            {axis: "Deaths", value: 7},
+            {axis: "Assists", value: 10},
+            {axis: "Gold Earned", value: 13},
+            {axis: "Win Rate", value: 9},
+            {axis: "Game Length", value: 5}
         ]
     },
     {
         className: 'Godv',
         axes: [
-            {axis: "GPM", value: 5},
-            {axis: "intelligence", value: 4},
-            {axis: "charisma", value: 10},
-            {axis: "dexterity", value: 11},
-            {axis: "luck", value: 8}
+            {axis: "Kills", value: 5},
+            {axis: "Deaths", value: 4},
+            {axis: "Assists", value: 10},
+            {axis: "Gold Earned", value: 11},
+            {axis: "Win Rate", value: 8},
+            {axis: "Game Length", value: 5}
         ]
     }
 ];

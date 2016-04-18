@@ -174,6 +174,14 @@ body {
 	margin-bottom: 5px;
 }
 
+.pin h4 {
+	text-align: center;
+	margin-top: 0px;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+
 .pin p {
 	font: 12px/18px Arial, sans-serif;
 	color: #333;

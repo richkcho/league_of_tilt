@@ -67,7 +67,7 @@ var RadarChart = {
 
                 var tt = tooltip.enter()
                     .append('g')
-                    .classed('tooltip', true)
+                    .classed('tooltip', true);
 
                 tt.append('rect').classed("tooltip", true);
                 tt.append('text').classed("tooltip", true);
@@ -293,7 +293,7 @@ var RadarChart = {
                         .classed({circle: 1, 'd3-enter': 1})
                         .on('mouseover', function(dd){
                             d3.event.stopPropagation();
-                            setTooltip(tooltip, cfg.tooltipFormatValue(dd[0].value));
+                            setTooltip(tooltip, cfg.tooltipFormatValue(dd[0].rawvalue));
                             //container.classed('focus', 1);
                             //container.select('.area.radar-chart-serie'+dd[1]).classed('focused', 1);
                         })

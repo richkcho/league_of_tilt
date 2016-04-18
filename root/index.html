@@ -71,6 +71,7 @@
 			<a href="#top" class="smoothScroll">
 				<div class="pin">
 					<img src="img/double.jpg" />
+					<h4>Doublelift "Doublelift"</h4>
 					<p>
 						Doublelift is an AD carry who currently plays for Team Solo Mid. Widely regarded as one of the world's best, Doublelift is also noted for his controversial personality - he loves to make matchups more exciting by trash-talking.
 					</p>
@@ -80,6 +81,7 @@
 			<a href="#top" class="smoothScroll">
 				<div class="pin">
 					<img src="img/sneaky.jpg" />
+					<h4>Sneaky "C9 Sneaky"</h4>
 					<p>
 						Sneaky currently plays AD carry for Cloud 9, an NA team that enjoyed great success their first year in the LCS. Sneaky doesn't pander much to the media, but says all that needs to be said through his continually dominant performance as one of the strongest ADCs in NA.
 					</p>
@@ -89,6 +91,7 @@
 			<a href="profiles/bjergsen.html" class="smoothScroll">
 				<div class="pin">
 					<img src="img/bjergsen.jpg" />
+					<h4>Bjersen "mid is sucess"</h4>
 					<p>
 						Bjergsen, the Danish import who moved from the Copenhagen Wolves to Team Solo Mid in 2014, has been widely heralded as one of the best midlaners in the world. His aggressive playstyle and tendency to dominate midlane across a variety of lane matchups has earned him a reputation for strong showings on assassins such as Zed and Leblanc.
 					</p>
@@ -98,6 +101,7 @@
 			<a href="#top" class="smoothScroll">
 				<div class="pin">
 					<img src="img/huni.jpeg" />
+					<h4>Huni "ADC Huni"</h4>
 					<p>
 						After starting his career at Samsung in the Korean LCK, Huni moved to Europe where he enjoyed a wildly successful 2015 Season with Fnatic. After a strong run at worlds, Fnatic disbanded and Huni found himself once again relocated, this time to a fledgling Immortals team in North America.
 					</p>
@@ -107,6 +111,7 @@
 			<a href="#top" class="smoothScroll">
 				<div class="pin">
 					<img src="img/darshan.jpg" />
+					<h4>Darshan "ZionSpartan"</h4>
 					<p>
 						Darshan (sometimes better known by his old alias, ZionSpartan) currently plays for CLG. He was one of the first players to popularize the top lane carry meta which has since been replaced largely by tanks. Every once in a while he will still be seen playing his signature champions such as Jax and Nasus.
 					</p>
@@ -116,6 +121,7 @@
 			<a href="#top" class="smoothScroll">
 				<div class="pin">
 					<img src="img/rush.jpg" />
+					<h4>Rush ""</h4>
 					<p>
 						Rush moved from Korea to join Cloud 9 and was met with awe as he climbed to the very top of the NA solo queue ladder within the first week, abusing is absurdly aggressive early game on champions such as Lee Sin and Nidalee. He has been a successful replacement for Cloud 9's popular jungler Meteos, who retired last year.
 					</p>
@@ -125,6 +131,7 @@
 			<a href="#top" class="smoothScroll">
 				<div class="pin">
 					<img src="img/wildTurtle.jpg" />
+					<h4>WildTurtle "WildTurtle"</h4>
 					<p>
 						WildTurtle received harsh criticism towards the end of the 2015 split. Many believed that he had underperformed compared to the rest of Team Solo Mid. His move to Immortals in 2016 turned out to be exactly the right move to silence those critics. Since the move he has been an integral part of the Immortal's 17-1 2016 spring split.
 					</p>
@@ -134,6 +141,7 @@
 			<a href="#top" class="smoothScroll">
 				<div class="pin">
 					<img src="img/impact.jpg" />
+					<h4>Impact ""</h4>
 					<p>
 						After winning the world championship with Korean giants SK Telecom in 2014, Impact moved to North American Team Impulse. Despite TIP's moderate success, Impact decided to stay in NA after the 2015 season and now plays with new team NRG eSports. Despite consistent strong performances on carry top laners (most notably Fiora), Impact has been criticized for his failure to smoothly transition into the tank meta that we have seen since the start of the 2016 season.
 					</p>
@@ -143,6 +151,7 @@
 			<a href="#top" class="smoothScroll">
 				<div class="pin">
 					<img src="img/piglet.jpg" />
+					<h4>Piglet "GodPiglet"</h4>
 					<p>
 						A former teammate of Impact on SK Telecom, Piglet followed Impact's lead and moved to North America after the dissolution of the team. Piglet is one of the most mechanically gifted AD carries in the world, known for his play on late-game hyperscalers such as Vayne and Lucian.
 					</p>
@@ -152,6 +161,7 @@
 			<a href="#top" class="smoothScroll">
 				<div class="pin">
 					<img src="img/kiwikid.jpg" />
+					<h4>KiWiKiD "KiWiKiD"</h4>
 					<p>
 						Kiwikid is the only remaining member of the original Dignitas roster. While he isn't known for flashy plays and huge highlight reels, Kiwikid is an outstandingly consistent player who makes few mistakes and works behind the scenes to help carry Dignitas to victory.
 					</p>
@@ -183,12 +193,14 @@
 		<div class="row">
 			<div id="map-container"></div>
 		</div>
+
+		<h1 id="radarchart">Radar Chart</h1>
+		<input type="text" id="test_1" value="Summoner Name">
+		<input type="text" id="test_2" value="Summoner Name">
+		<input type="text" id="test_3" value="Summoner Name">
+		<input type="button" id="btnRenderRadar" value="CLICK ME" onclick="renderRadarOutput()">
+		<div id="radar-chart-container"></div>
 	</div>
-
-
-	<h1 id="radarchart">Radar Chart</h1>
-	<div id="radar-chart-container"></div>
-
 
  	<!-- The main page content (just filler for this demo) -->
 	 <div id="body-text">
@@ -348,10 +360,12 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/d3.min.js"></script>
 	<script src="js/d3.tip.js"></script>
+	<script src="js/d3-queue.v2.min.js"></script>
 	<script src="js/utils.js"></script>
 	<script src="js/toy-data.js"></script>
 	<script src="js/radar-chart.js"></script>
-	<script src="js/map-visualizations.js"></script>
+	<script src="js/radar-vis.js"></script>
+	<script src="js/map-vis.js"></script>
 	<script src="js/main.js"></script>
 
 </body>

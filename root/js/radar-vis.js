@@ -31,17 +31,29 @@ function drawRadarChart(error, players) {
 
     var radardata = [];
     players.forEach(function(playerdata, index, arr) {
-        var tempdata = {};
-        tempdata.className = lookupPlayerName(playerdata["SummonerID"]);
-        var axes = [];
-        var playeravgs = calculatePlayerAverages(playerdata["Stats"]);
-        var playeravgsnorm = normalizeAverageStats(playeravgs, "ANY", "ANY");
-        for(var key in playeravgsnorm) {
-            axes.push({axis: key, value: playeravgsnorm[key] + 1, rawvalue: playeravgs[key]}); // thus a value of 1 be normal
-        }
-        tempdata.axes = axes;
-        radardata.push(tempdata);
+        radardata.push(convertStatsToRadarData(lookupPlayerName(playerdata["SummonerID"]),
+                                calculatePlayerAverages(playerdata["Stats"]), "ANY", "ANY"));
     });
 
+    console.log(getGlobalAverages("ANY", "ANY"));
+
+    // consider drawing the average here
+    radardata.push(convertStatsToRadarData("Average", getGlobalAverages("ANY", "ANY"), "ANY", "ANY"));
+
+    console.log(radardata);
+
     RadarChart.draw("#radar-chart-container", radardata);
+}
+
+function convertStatsToRadarData(name, stats, lane, role) {
+    var tempdata = {};
+    tempdata.className = name;
+    var axes = [];
+    var normedstats = normalizeAverageStats(stats, lane, role);
+    for(var key in normedstats) {
+        axes.push({axis: key, value: normedstats[key] + 1, rawvalue: stats[key]}); // thus a value of 1 be normal
+    }
+    tempdata.axes = axes;
+
+    return tempdata;
 }

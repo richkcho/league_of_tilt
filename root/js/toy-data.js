@@ -1,4 +1,5 @@
-var data = [
+// TODO either make this good mock data or remove this
+var toy_data = [
     {
         className: 'Faker', // optional can be used for styling
         axes: [

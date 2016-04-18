@@ -20,27 +20,30 @@ function renderRadarOutput() {
             radarq.defer(loadPlayerStats, elem);
         }
     });
-    radarq.awaitAll(drawRadarChart);
+    radarq.awaitAll(function(error, players) {
+        return drawRadarChart(error, players, "ANY", "ANY");
+    });
 
 }
 
-function drawRadarChart(error, players) {
+function drawRadarChart(error, players, lane, role) {
     if(error) {
         throw error;
+    }
+
+    // TODO decide on how to handle no good data
+    if(players.length == 0) {
+        return null;
     }
 
     var radardata = [];
     players.forEach(function(playerdata, index, arr) {
         radardata.push(convertStatsToRadarData(lookupPlayerName(playerdata["SummonerID"]),
-                                calculatePlayerAverages(playerdata["Stats"]), "ANY", "ANY"));
+                                calculatePlayerAverages(playerdata["Stats"]), lane, role));
     });
 
-    console.log(getGlobalAverages("ANY", "ANY"));
-
     // consider drawing the average here
-    radardata.push(convertStatsToRadarData("Average", getGlobalAverages("ANY", "ANY"), "ANY", "ANY"));
-
-    console.log(radardata);
+    radardata.push(convertStatsToRadarData("Average", getGlobalAverages(lane, role), lane, role));
 
     RadarChart.draw("#radar-chart-container", radardata);
 }

@@ -17,7 +17,6 @@ function renderRadarOutput() {
     var radarq = d3_queue.queue();
     players.forEach(function(elem, index, arr) {
         if(elem != null) {
-            // radarq.defer(d3.json, "data/playerstats/" + elem + ".json");
             radarq.defer(loadPlayerStats, elem);
         }
     });
@@ -38,12 +37,11 @@ function drawRadarChart(error, players) {
         var playeravgs = calculatePlayerAverages(playerdata["Stats"]);
         var playeravgsnorm = normalizeAverageStats(playeravgs, "ANY", "ANY");
         for(var key in playeravgsnorm) {
-            axes.push({axis: key, value:playeravgsnorm[key] + 1});
+            axes.push({axis: key, value: playeravgsnorm[key] + 1, rawvalue: playeravgs[key]}); // thus a value of 1 be normal
         }
         tempdata.axes = axes;
         radardata.push(tempdata);
     });
 
-    console.log(radardata);
     RadarChart.draw("#radar-chart-container", radardata);
 }

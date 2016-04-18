@@ -2,34 +2,34 @@ var data = [
     {
         className: 'Faker', // optional can be used for styling
         axes: [
-            {axis: "Kills", value: 1},
-            {axis: "Deaths", value: -1.5},
-            {axis: "Assists", value: 0},
-            {axis: "Gold Earned", value: 2},
-            {axis: "Win Rate", value: 2},
-            {axis: "Game Length", value: .2}
+            {axis: "Kills", value: 1, rawvalue: 123},
+            {axis: "Deaths", value: -1.5, rawvalue: 123},
+            {axis: "Assists", value: 0, rawvalue: 123},
+            {axis: "Gold Earned", value: 2, rawvalue: 123},
+            {axis: "Win Rate", value: 2, rawvalue: 123},
+            {axis: "Game Length", value: .2, rawvalue: 123}
         ]
     },
     {
         className: 'Imp',
         axes: [
-            {axis: "Kills", value: 1.5},
-            {axis: "Deaths", value: -.1},
-            {axis: "Assists", value: -.3},
-            {axis: "Gold Earned", value: .4},
-            {axis: "Win Rate", value: 1.5},
-            {axis: "Game Length", value: 0.5}
+            {axis: "Kills", value: 1.5, rawvalue: 123},
+            {axis: "Deaths", value: -.1, rawvalue: 123},
+            {axis: "Assists", value: -.3, rawvalue: 123},
+            {axis: "Gold Earned", value: .4, rawvalue: 123},
+            {axis: "Win Rate", value: 1.5, rawvalue: 123},
+            {axis: "Game Length", value: 0.5, rawvalue: 123}
         ]
     },
     {
         className: 'Godv',
         axes: [
-            {axis: "Kills", value: -1},
-            {axis: "Deaths", value: 3},
-            {axis: "Assists", value: 0},
-            {axis: "Gold Earned", value: -2},
-            {axis: "Win Rate", value: -1.2},
-            {axis: "Game Length", value: 1.5}
+            {axis: "Kills", value: -1, rawvalue: 123},
+            {axis: "Deaths", value: 3, rawvalue: 123},
+            {axis: "Assists", value: 0, rawvalue: 123},
+            {axis: "Gold Earned", value: -2, rawvalue: 123},
+            {axis: "Win Rate", value: -1.2, rawvalue: 123},
+            {axis: "Game Length", value: 1.5, rawvalue: 123}
         ]
     }
 ];

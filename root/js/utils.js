@@ -4,7 +4,7 @@
 
 var util = {};
 util.playerIDs = [];
-util.playerIDs_loaded = false;
+util.playerNames = [];
 util.playerIDLookup = {};
 util.playerIDLookup_loaded = false;
 util.playerNameLookup = {};
@@ -17,12 +17,6 @@ util.playerstats.std_loaded = false;
 util.ignorethese = new Set(["MatchID", "Role", "Lane"]);
 
 //region Load Static Information
-d3.json("data/player_id_list.json", function(data) {
-    util.playerIDs = data;
-    util.playerIDs_loaded = true;
-    console.log("Player ID's loaded");
-});
-
 d3.json("data/player_name_id_map.json", function(data) {
     util.playerIDLookup = data;
     util.playerIDLookup_loaded = true;
@@ -31,7 +25,14 @@ d3.json("data/player_name_id_map.json", function(data) {
 
 d3.json("data/player_id_name_map.json", function(data) {
     util.playerNameLookup = data;
+
+    for(var id in data) {
+        util.playerIDs.push(id);
+        util.playerNames.push(data[id]);
+    }
+
     util.playerNameLookup_loaded = true;
+    console.log("Player IDs, Names loaded");
     console.log("Player name lookup loaded");
 });
 
@@ -49,7 +50,7 @@ d3.json("data/player_stats_std.json", function(data) {
 //endregion
 
 function playerInfoLoaded() {
-    return util.playerIDs_loaded && util.playerIDLookup_loaded && util.playerNameLookup_loaded &&
+    return util.playerIDLookup_loaded && util.playerNameLookup_loaded &&
         util.playerstats.mean_loaded && util.playerstats.std_loaded;
 }
 

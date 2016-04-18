@@ -88,7 +88,7 @@
 				</div>
 			</a>
 		
-			<a href="#top" class="smoothScroll">
+			<a href="profiles/bjergsen.html" class="smoothScroll">
 				<div class="pin">
 					<img src="img/bjergsen.jpg" />
 					<h4>Bjersen "mid is sucess"</h4>
@@ -121,7 +121,7 @@
 			<a href="#top" class="smoothScroll">
 				<div class="pin">
 					<img src="img/rush.jpg" />
-					<h4>Rush ""</h4>
+					<h4>Rush "Rush"</h4>
 					<p>
 						Rush moved from Korea to join Cloud 9 and was met with awe as he climbed to the very top of the NA solo queue ladder within the first week, abusing is absurdly aggressive early game on champions such as Lee Sin and Nidalee. He has been a successful replacement for Cloud 9's popular jungler Meteos, who retired last year.
 					</p>
@@ -141,7 +141,7 @@
 			<a href="#top" class="smoothScroll">
 				<div class="pin">
 					<img src="img/impact.jpg" />
-					<h4>Impact ""</h4>
+					<h4>Impact "Impact"</h4>
 					<p>
 						After winning the world championship with Korean giants SK Telecom in 2014, Impact moved to North American Team Impulse. Despite TIP's moderate success, Impact decided to stay in NA after the 2015 season and now plays with new team NRG eSports. Despite consistent strong performances on carry top laners (most notably Fiora), Impact has been criticized for his failure to smoothly transition into the tank meta that we have seen since the start of the 2016 season.
 					</p>
@@ -187,12 +187,15 @@
 				<option value="adc">ADC</option>
 				<option value="sup">Support</option>
 			</select>
-			<input type="button" id="btnRenderMap" value="Load Visualization" onclick="renderMapOutput()">
+			<input type="button" id="btnRenderMapTimeAll" value="Load Visualization - Time Al" onclick="renderMapOutputTimeAll()">
+			<input type="button" id="btnRenderMapTimeRegion" value="Load Visualization - Time Region" onclick="renderMapOutputTimeRegion()">
 		</div>
 
 		<div class="row">
 			<div id="map-container"></div>
 		</div>
+
+
 
 		<h1 id="radarchart">Radar Chart</h1>
 		<input type="text" id="test_1" value="Summoner Name">

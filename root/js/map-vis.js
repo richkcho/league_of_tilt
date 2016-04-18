@@ -5,7 +5,56 @@
 var map = {};
 map.scale = {};
 
-function renderMapOutput() {
+function renderMapOutputTimeRegion() {
+    if(!map.initialized || !playerInfoLoaded()) {
+        // wait until stuff has loaded TODO error handling
+        console.log("Map not loaded yet!");
+        return;
+    }
+
+    var summonerID = lookupPlayerID($("#summoner_name").val());
+    if(summonerID == null) {
+        // invalid player TODO error handling
+        console.log("Invalid player chosen!");
+        return;
+    }
+
+    var lane = "ANY";
+    var role = "ANY";
+    switch($("#role_selected").val()) {
+        case "top":
+            lane = "TOP";
+            role = "SOLO";
+            break;
+        case "jg":
+            lane = "JUNGLE";
+            role = "NONE";
+            break;
+        case "mid":
+            lane = "MIDDLE";
+            role = "SOLO";
+            break;
+        case "adc":
+            lane = "BOTTOM";
+            role = "DUO_CARRY";
+            break;
+        case "sup":
+            lane = "BOTTOM";
+            role = "DUO_SUPPORT";
+            break;
+    }
+
+    // get the time info from the slider position
+    // TODO set timestart, timeend
+
+    // set player name
+    $("#summoner_name").val(lookupPlayerName(summonerID));
+
+    // start animation
+    // animateMapTimeRegion(summonerID, lane, timestart, timeend);
+}
+
+function renderMapOutputTimeAll() {
     if(!map.initialized || !playerInfoLoaded()) {
         // wait until stuff has loaded TODO error handling
         console.log("Map not loaded yet!");

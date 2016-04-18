@@ -2,31 +2,34 @@ var data = [
     {
         className: 'Faker', // optional can be used for styling
         axes: [
-            {axis: "strength", value: 13, yOffset: 10},
-            {axis: "intelligence", value: 6},
-            {axis: "charisma", value: 5},
-            {axis: "dexterity", value: 9},
-            {axis: "luck", value: 2, xOffset: -20}
+            {axis: "Kills", value: 1, rawvalue: 123},
+            {axis: "Deaths", value: -1.5, rawvalue: 123},
+            {axis: "Assists", value: 0, rawvalue: 123},
+            {axis: "Gold Earned", value: 2, rawvalue: 123},
+            {axis: "Win Rate", value: 2, rawvalue: 123},
+            {axis: "Game Length", value: .2, rawvalue: 123}
         ]
     },
     {
         className: 'Imp',
         axes: [
-            {axis: "strength", value: 6},
-            {axis: "intelligence", value: 7},
-            {axis: "charisma", value: 10},
-            {axis: "dexterity", value: 13},
-            {axis: "luck", value: 9}
+            {axis: "Kills", value: 1.5, rawvalue: 123},
+            {axis: "Deaths", value: -.1, rawvalue: 123},
+            {axis: "Assists", value: -.3, rawvalue: 123},
+            {axis: "Gold Earned", value: .4, rawvalue: 123},
+            {axis: "Win Rate", value: 1.5, rawvalue: 123},
+            {axis: "Game Length", value: 0.5, rawvalue: 123}
         ]
     },
     {
         className: 'Godv',
         axes: [
-            {axis: "strength", value: 5},
-            {axis: "intelligence", value: 4},
-            {axis: "charisma", value: 10},
-            {axis: "dexterity", value: 11},
-            {axis: "luck", value: 8}
+            {axis: "Kills", value: -1, rawvalue: 123},
+            {axis: "Deaths", value: 3, rawvalue: 123},
+            {axis: "Assists", value: 0, rawvalue: 123},
+            {axis: "Gold Earned", value: -2, rawvalue: 123},
+            {axis: "Win Rate", value: -1.2, rawvalue: 123},
+            {axis: "Game Length", value: 1.5, rawvalue: 123}
         ]
     }
 ];

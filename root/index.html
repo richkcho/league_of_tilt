@@ -186,9 +186,14 @@
 	</div>
 
 
-	<h1 id="radarchart">Radar Chart</h1>
-	<div id="radar-chart-container"></div>
-
+	<div class="container">
+		<h1 id="radarchart">Radar Chart</h1>
+		<input type="text" id="test_1" value="Summoner Name">
+		<input type="text" id="test_2" value="Summoner Name">
+		<input type="text" id="test_3" value="Summoner Name">
+		<input type="button" id="btnRenderRadar" value="CLICK ME" onclick="renderRadarOutput()">
+		<div id="radar-chart-container"></div>
+	</div>
 
  	<!-- The main page content (just filler for this demo) -->
 	 <div id="body-text">
@@ -348,10 +353,12 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/d3.min.js"></script>
 	<script src="js/d3.tip.js"></script>
+	<script src="js/d3-queue.v2.min.js"></script>
 	<script src="js/utils.js"></script>
 	<script src="js/toy-data.js"></script>
 	<script src="js/radar-chart.js"></script>
-	<script src="js/map-visualizations.js"></script>
+	<script src="js/radar-vis.js"></script>
+	<script src="js/map-vis.js"></script>
 	<script src="js/main.js"></script>
 
 </body>

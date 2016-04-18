@@ -93,10 +93,7 @@ function animateMapTimeRegion(playerID, playerLane, playerRole, timeStart, timeE
         map.svg.selectAll("path").remove();
 
         // filter mapdata by role and lane
-        mapdata = mapdata.filter(function(game) {
-            return (playerLane == "ANY" || game.Lane == playerLane) &&
-                    (playerRole == "ANY" || game.Role == playerRole);
-        });
+        mapdata = filterData(mapdata, playerLane, playerRole);
 
         var color = d3.scale.category20();
         color.domain(

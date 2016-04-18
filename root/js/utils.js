@@ -16,6 +16,7 @@ util.playerstats.std = {};
 util.playerstats.std_loaded = false;
 util.ignorethese = new Set(["MatchID", "Role", "Lane"]);
 
+//region Load Static Information
 d3.json("data/player_id_list.json", function(data) {
     util.playerIDs = data;
     util.playerIDs_loaded = true;
@@ -45,6 +46,7 @@ d3.json("data/player_stats_std.json", function(data) {
     util.playerstats.std_loaded = true;
     console.log("Player std stats loaded");
 });
+//endregion
 
 function playerInfoLoaded() {
     return util.playerIDs_loaded && util.playerIDLookup_loaded && util.playerNameLookup_loaded &&
@@ -89,19 +91,31 @@ function calculatePlayerAverages(stats) {
     return avgstats;
 }
 
-function getGloablAverages(lane, role) {
-    if(!playerInfoLoaded()) {
-        return null;
-    }
+function getGlobalStats(stats, lane, role) {
+    var gstats = {};
+    for(var temp = 0; temp < stats.length; temp++) {
+        if(stats[temp]["Role"] == role &&
+            stats[temp]["Lane"] == lane) {
 
-    for(var temp = 0; temp < util.playerstats.mean.length; temp++) {
-        if(util.playerstats.mean[temp]["Role"] == role &&
-            util.playerstats.mean[temp]["Lane"] == lane) {
-            return util.playerstats.mean[temp];
+            for(var key in stats[temp]) {
+                if(!util.ignorethese.has(key)) {
+                    gstats[key] = stats[temp][key];
+                }
+            }
+
+            return gstats;
         }
     }
 
     return null;
+}
+
+function getGlobalAverages(lane, role) {
+    if(!playerInfoLoaded()) {
+        return null;
+    }
+
+    return getGlobalStats(util.playerstats.mean, lane, role);
 }
 
 function getGlobalStds(lane, role) {
@@ -109,14 +123,7 @@ function getGlobalStds(lane, role) {
         return null;
     }
 
-    for(var temp = 0; temp < util.playerstats.mean.length; temp++) {
-        if(util.playerstats.std[temp]["Role"] == role &&
-            util.playerstats.std[temp]["Lane"] == lane) {
-            return util.playerstats.std[temp];
-        }
-    }
-
-    return null;
+    return getGlobalStats(util.playerstats.std, lane, role);
 }
 
 function normalizeAverageStats(avgstats, lane, role) {
@@ -125,7 +132,7 @@ function normalizeAverageStats(avgstats, lane, role) {
     }
 
     var avgstatsnorm = {};
-    var globalavgs = getGloablAverages(lane, role);
+    var globalavgs = getGlobalAverages(lane, role);
     var globalstds = getGlobalStds(lane, role);
 
     for(var key in avgstats) {

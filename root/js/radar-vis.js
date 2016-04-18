@@ -20,28 +20,43 @@ function renderRadarOutput() {
             radarq.defer(loadPlayerStats, elem);
         }
     });
-    radarq.awaitAll(drawRadarChart);
+    radarq.awaitAll(function(error, players) {
+        return drawRadarChart(error, players, "ANY", "ANY");
+    });
 
 }
 
-function drawRadarChart(error, players) {
+function drawRadarChart(error, players, lane, role) {
     if(error) {
         throw error;
     }
 
+    // TODO decide on how to handle no good data
+    if(players.length == 0) {
+        return null;
+    }
+
     var radardata = [];
     players.forEach(function(playerdata, index, arr) {
-        var tempdata = {};
-        tempdata.className = lookupPlayerName(playerdata["SummonerID"]);
-        var axes = [];
-        var playeravgs = calculatePlayerAverages(playerdata["Stats"]);
-        var playeravgsnorm = normalizeAverageStats(playeravgs, "ANY", "ANY");
-        for(var key in playeravgsnorm) {
-            axes.push({axis: key, value: playeravgsnorm[key] + 1, rawvalue: playeravgs[key]}); // thus a value of 1 be normal
-        }
-        tempdata.axes = axes;
-        radardata.push(tempdata);
+        radardata.push(convertStatsToRadarData(lookupPlayerName(playerdata["SummonerID"]),
+                                calculatePlayerAverages(playerdata["Stats"]), lane, role));
     });
 
+    // consider drawing the average here
+    radardata.push(convertStatsToRadarData("Average", getGlobalAverages(lane, role), lane, role));
+
     RadarChart.draw("#radar-chart-container", radardata);
+}
+
+function convertStatsToRadarData(name, stats, lane, role) {
+    var tempdata = {};
+    tempdata.className = name;
+    var axes = [];
+    var normedstats = normalizeAverageStats(stats, lane, role);
+    for(var key in normedstats) {
+        axes.push({axis: key, value: normedstats[key] + 1, rawvalue: stats[key]}); // thus a value of 1 be normal
+    }
+    tempdata.axes = axes;
+
+    return tempdata;
 }

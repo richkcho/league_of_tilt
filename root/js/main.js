@@ -1,9 +1,8 @@
-
-// draw the radar chart
-RadarChart.draw("#radar-chart-container", data);
-
-// draw the map thing
+//region Initialization
 initMap();
+
+// draw radar with toy data
+RadarChart.draw("#radar-chart-container", toy_data);
 
 // set up trigger for enter key
 $("#summoner_name").keyup(function(event){
@@ -11,3 +10,4 @@ $("#summoner_name").keyup(function(event){
         $("#btnRenderMap").click();
     }
 });
+//endregion

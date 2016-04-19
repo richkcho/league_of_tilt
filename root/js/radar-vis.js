@@ -48,6 +48,7 @@ function drawRadarChart(error, players, lane, role, div) {
     // consider drawing the average here
     radardata.push(convertStatsToRadarData("Average", getGlobalAverages(lane, role), lane, role));
 
+    console.log(radardata);
     RadarChart.draw(div, radardata);
 }
 
@@ -56,6 +57,8 @@ function convertStatsToRadarData(name, stats, lane, role) {
     tempdata.className = name;
     var axes = [];
     var normedstats = normalizeAverageStats(stats, lane, role);
+    console.log(stats);
+    console.log(normedstats);
     for(var key in normedstats) {
         axes.push({axis: key, value: normedstats[key] + 1, rawvalue: stats[key]}); // thus a value of 1 be normal
     }

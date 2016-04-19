@@ -15,6 +15,7 @@ util.playerstats.mean_loaded = false;
 util.playerstats.std = {};
 util.playerstats.std_loaded = false;
 util.ignorethese = new Set(["MatchID", "Role", "Lane"]);
+util.statfields = ["Kills", "Deaths", "Assists", "GoldEarned", "Winner", "GameDuration", "GamesPlayed"];
 
 //region Load Static Information
 d3.json("data/player_name_id_map.json", function(data) {
@@ -38,6 +39,11 @@ d3.json("data/player_id_name_map.json", function(data) {
 
 d3.json("data/player_stats_mean.json", function(data) {
     util.playerstats.mean = data;
+    for(var key in util.playerstats.mean[0]) {
+        if(!util.ignorethese.has(key) && util.statfields.indexOf(key) < 0) {
+            throw "statfields incomplete";
+        }
+    }
     util.playerstats.mean_loaded = true;
     console.log("Player average stats loaded");
 });

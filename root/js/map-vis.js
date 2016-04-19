@@ -53,7 +53,7 @@ function renderMapOutputTimeRegion() {
         $("#summoner_name").val(lookupPlayerName(summonerID));
 
         // start animation
-        animateMapTimeRegion(summonerID, lane, timestart, timeend);
+        animateMapTimeRegion(summonerID, lane, role, timestart, timeend);
     }
 
 }
@@ -102,6 +102,9 @@ function renderMapOutputTimeAll() {
 
     // start animation
     animateMapTimeAll(summonerID, lane, role);
+
+    // create radar map for this person
+    drawRadarChartPlayers([summonerID], lane, role, "#map-radar-container");
 }
 
 function initMap() {
@@ -114,7 +117,6 @@ function initMap() {
     // svg map settings
     map.width = 500;
     map.height = 500;
-
 
     map.scale.xScale = d3.scale.linear()
         .domain([ map.scale.domain.min.x,  map.scale.domain.max.x])
@@ -229,6 +231,7 @@ function transition(circle, path) {
             .ease("linear")
             .attrTween("transform", translateAlong(path.node()))
             .each("end", transition);
+        // TODO talk about this, might not be the best place to put.
         $("#map-slider-div").slider("option", "max", path[0][0]["__data__"].length);
         $("#map-slider-div").slider("value", $("#map-slider-div").slider("value"));
 

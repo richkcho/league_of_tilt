@@ -14,6 +14,10 @@ function renderRadarOutput() {
     var players = [s1, s2, s3];
 
     // code below here shouldn't really change, just change how the players array is made
+    drawRadarChartPlayers(players, "ANY", "ANY", "#radar-chart-container");
+}
+
+function drawRadarChartPlayers(players, lane, role, div) {
     var radarq = d3_queue.queue();
     players.forEach(function(elem, index, arr) {
         if(elem != null) {
@@ -21,12 +25,11 @@ function renderRadarOutput() {
         }
     });
     radarq.awaitAll(function(error, players) {
-        return drawRadarChart(error, players, "ANY", "ANY");
+        return drawRadarChart(error, players, lane, role, div);
     });
-
 }
 
-function drawRadarChart(error, players, lane, role) {
+function drawRadarChart(error, players, lane, role, div) {
     if(error) {
         throw error;
     }
@@ -45,7 +48,7 @@ function drawRadarChart(error, players, lane, role) {
     // consider drawing the average here
     radardata.push(convertStatsToRadarData("Average", getGlobalAverages(lane, role), lane, role));
 
-    RadarChart.draw("#radar-chart-container", radardata);
+    RadarChart.draw(div, radardata);
 }
 
 function convertStatsToRadarData(name, stats, lane, role) {

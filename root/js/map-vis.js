@@ -45,13 +45,17 @@ function renderMapOutputTimeRegion() {
     }
 
     // get the time info from the slider position
-    // TODO set timestart, timeend
+    if(map.initialized) {
+        timestart = $("#map-slider-div").slider("values", 0);
+        timeend = $("#map-slider-div").slider("values", 1);
 
-    // set player name
-    $("#summoner_name").val(lookupPlayerName(summonerID));
+        // set player name
+        $("#summoner_name").val(lookupPlayerName(summonerID));
 
-    // start animation
-    // animateMapTimeRegion(summonerID, lane, timestart, timeend);
+        // start animation
+        animateMapTimeRegion(summonerID, lane, timestart, timeend);
+    }
+
 }
 
 function renderMapOutputTimeAll() {
@@ -108,8 +112,8 @@ function initMap() {
     };
 
     // svg map settings
-    map.width = 800;
-    map.height = 800;
+    map.width = 500;
+    map.height = 500;
 
 
     map.scale.xScale = d3.scale.linear()
@@ -130,6 +134,22 @@ function initMap() {
         .attr('y', '0')
         .attr('width', map.width)
         .attr('height', map.height);
+
+    //document.getElementById("map-slider-div").innerHTML +=
+    //    "<input id='map-slider' type='range' step=1 min=0 /> ";
+
+    $( "#map-slider-div" ).slider({
+        range: true,
+        min: 0,
+        max: 30,
+        values: [ 0, 30 ],
+        slide: function( event, ui ) {
+            $( "#slider-time" ).val( "" + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        }
+    });
+    $( "#slider-time" ).val( "" + $( "#map-slider-div" ).slider( "values", 0 ) +
+        " - " + $( "#map-slider-div" ).slider( "values", 1 ) );
+
 
     map.initialized = true;
     console.log("Initialized map");
@@ -204,9 +224,14 @@ function translateAlong(path) {
 function transition(circle, path) {
     if(circle && path) {
         circle.transition()
-            .duration(1000 * path[0][0]["__data__"].length) // duration should be proportional to in-game time
+            .duration(1000 * path[0][0]["__data__"].length)
+            // duration should be proportional to in-game time
             .ease("linear")
             .attrTween("transform", translateAlong(path.node()))
             .each("end", transition);
+        $("#map-slider-div").slider("option", "max", path[0][0]["__data__"].length);
+        $("#map-slider-div").slider("value", $("#map-slider-div").slider("value"));
+
     }
+
 }

@@ -45,16 +45,14 @@ function renderMapOutputTimeRegion() {
     }
 
     // get the time info from the slider position
-    if(map.initialized) {
-        timestart = $("#map-slider-div").slider("values", 0);
-        timeend = $("#map-slider-div").slider("values", 1);
+    timestart = $("#map-slider-div").slider("values", 0);
+    timeend = $("#map-slider-div").slider("values", 1);
 
-        // set player name
-        $("#summoner_name").val(lookupPlayerName(summonerID));
+    // set player name
+    $("#summoner_name").val(lookupPlayerName(summonerID));
 
-        // start animation
-        animateMapTimeRegion(summonerID, lane, role, timestart, timeend);
-    }
+    // start animation
+    animateMapTimeRegion(summonerID, lane, role, timestart, timeend);
 
 }
 

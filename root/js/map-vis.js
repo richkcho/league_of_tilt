@@ -5,6 +5,59 @@
 var map = {};
 map.scale = {};
 
+function renderMapOutputTimeRegion() {
+    if(!map.initialized || !playerInfoLoaded()) {
+        // wait until stuff has loaded TODO error handling
+        console.log("Map not loaded yet!");
+        return;
+    }
+
+    var summonerID = lookupPlayerID($("#summoner_name").val());
+    if(summonerID == null) {
+        // invalid player TODO error handling
+        console.log("Invalid player chosen!");
+        return;
+    }
+
+    var lane = "ANY";
+    var role = "ANY";
+    switch($("#role_selected").val()) {
+        case "top":
+            lane = "TOP";
+            role = "SOLO";
+            break;
+        case "jg":
+            lane = "JUNGLE";
+            role = "NONE";
+            break;
+        case "mid":
+            lane = "MIDDLE";
+            role = "SOLO";
+            break;
+        case "adc":
+            lane = "BOTTOM";
+            role = "DUO_CARRY";
+            break;
+        case "sup":
+            lane = "BOTTOM";
+            role = "DUO_SUPPORT";
+            break;
+    }
+
+    // get the time info from the slider position
+    if(map.initialized) {
+        timestart = $("#map-slider-div").slider("values", 0);
+        timeend = $("#map-slider-div").slider("values", 1);
+
+        // set player name
+        $("#summoner_name").val(lookupPlayerName(summonerID));
+
+        // start animation
+        animateMapTimeRegion(summonerID, lane, role, timestart, timeend);
+    }
+
+}
+
 function renderMapOutputTimeAll() {
     if(!map.initialized || !playerInfoLoaded()) {
         // wait until stuff has loaded TODO error handling
@@ -62,9 +115,8 @@ function initMap() {
     };
 
     // svg map settings
-    map.width = 600;
-    map.height = 600;
-
+    map.width = 500;
+    map.height = 500;
 
     map.scale.xScale = d3.scale.linear()
         .domain([ map.scale.domain.min.x,  map.scale.domain.max.x])
@@ -84,6 +136,22 @@ function initMap() {
         .attr('y', '0')
         .attr('width', map.width)
         .attr('height', map.height);
+
+    //document.getElementById("map-slider-div").innerHTML +=
+    //    "<input id='map-slider' type='range' step=1 min=0 /> ";
+
+    $( "#map-slider-div" ).slider({
+        range: true,
+        min: 0,
+        max: 30,
+        values: [ 0, 30 ],
+        slide: function( event, ui ) {
+            $( "#slider-time" ).val( "" + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        }
+    });
+    $( "#slider-time" ).val( "" + $( "#map-slider-div" ).slider( "values", 0 ) +
+        " - " + $( "#map-slider-div" ).slider( "values", 1 ) );
+
 
     map.initialized = true;
     console.log("Initialized map");
@@ -158,9 +226,15 @@ function translateAlong(path) {
 function transition(circle, path) {
     if(circle && path) {
         circle.transition()
-            .duration(1000 * path[0][0]["__data__"].length) // duration should be proportional to in-game time
+            .duration(1000 * path[0][0]["__data__"].length)
+            // duration should be proportional to in-game time
             .ease("linear")
             .attrTween("transform", translateAlong(path.node()))
             .each("end", transition);
+        // TODO talk about this, might not be the best place to put.
+        $("#map-slider-div").slider("option", "max", path[0][0]["__data__"].length);
+        $("#map-slider-div").slider("value", $("#map-slider-div").slider("value"));
+
     }
+
 }

@@ -31,10 +31,18 @@ body {
    	/*font: 12px/1.4em 'IM Fell Double Pica SC', serif;*/
 }
 
-#body-text {
+#viz-intro {
 	margin-left: 100px;
 	margin-right: 100px;
-	margin-top: 100px;
+	margin-top: 30px;
+	font: 14px 'Open Sans', sans-serif;
+}
+
+#glossary {
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-top: 30px;
+	font: 14px 'Open Sans', sans-serif;
 }
 
 #wrap {
@@ -208,7 +216,17 @@ body {
 	}
 }
 
+#viz-intro-header {
+	margin-top: 30px;
+	text-align: center;
+}
+
 #player-profile-header {
+	margin-top: 30px;
+	text-align: center;
+}
+
+#glossary-header {
 	margin-top: 30px;
 	text-align: center;
 }

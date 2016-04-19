@@ -89,6 +89,9 @@ function calculatePlayerAverages(stats) {
     for(var key in avgstats) {
         avgstats[key] /= numstats;
     }
+
+    avgstats["GamesPlayed"] = numstats;
+
     return avgstats;
 }
 

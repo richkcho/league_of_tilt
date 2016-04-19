@@ -54,6 +54,8 @@ function renderMapOutputTimeRegion() {
     // start animation
     animateMapTimeRegion(summonerID, lane, role, timestart, timeend);
 
+    // create radar map for this person
+    drawRadarChartPlayers([summonerID], lane, role, "#map-radar-container");
 }
 
 function renderMapOutputTimeAll() {

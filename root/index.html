@@ -200,13 +200,12 @@
 
 <hr class="prof-sep">
 
-<!-- TODO talk to alex about maybe making everything in a container? depends on how much bootstrapiness we want -->
 <div class="container">
     <div class="row">
-        <h1 id="map" class="section-title">Interactive Map</h1>
+        <h1 class="section-title">Interactive Map</h1>
     </div>
 
-    <div class="row map-player-select">
+    <div id="map-player-select" class="row">
         <input type="text" id="summoner_name" value="Summoner Name">
         <select id="role_selected">
             <option value="any">Any</option>
@@ -220,7 +219,7 @@
         <input type="button" id="btnRenderMapTimeRegion" value="Load Visualization - Time Region" onclick="renderMapOutputTimeRegion()">
     </div>
 
-	<div class="row">
+	<div id="map-vis-container" class="row">
 		<div class="col-md-6">
 			<div id="map-container"></div>
 		</div>
@@ -229,23 +228,25 @@
 		</div>
 	</div>
 
-    <div id="map-slider-div">
-
+    <div id="map-slider-container">
+        <div id="map-slider-div"></div>
+        <label for="map-slider-time">Time range:</label>
+        <input type="text" id="map-slider-time" readonly style="border:10px; color:#f6931f; font-weight:bold;">
     </div>
-    <p>
-        <label for="slider-time">Price range:</label>
-        <input type="text" id="slider-time" readonly style="border:0; color:#f6931f; font-weight:bold;">
-    </p>
 
-
-    <h1 id="radarchart">Radar Chart</h1>
+    <div class="row">
+        <h1 class="section-title"> Radar Chart</h1>
+    </div>
     <input type="text" id="test_1" value="Summoner Name">
     <input type="text" id="test_2" value="Summoner Name">
     <input type="text" id="test_3" value="Summoner Name">
     <input type="button" id="btnRenderRadar" value="CLICK ME" onclick="renderRadarOutput()">
     <div id="radar-chart-container"></div>
 
-    <div class="row heatmap-player-select">
+    <div class="row">
+        <h1 class="section-title">Interactive Heatmap</h1>
+    </div>
+    <div id="heatmap-player-select" class="row">
         <input type="text" id="summoner_name_heatmap" value="Summoner Name">
         <select id="role_selected_heatmap">
             <option value="any">Any</option>
@@ -256,9 +257,15 @@
             <option value="sup">Support</option>
         </select>
         <input type="button" id="btnRenderHeatmapTimeAll" value="Load Visualization - Time Al" onclick="renderHeatMapOutputTimeAll()">
+        <input type="button" id="btnRenderHeatmapTimeRegion" value="Load Visualization - Time Region" onclick="renderHeatmapOutputTimeRegion()">
     </div>
     <div class="row">
         <div id="heatmap-container"></div>
+    </div>
+    <div id="heatmap-slider-container">
+        <div id="heatmap-slider-div"></div>
+        <label for="heatmap-slider-time">Time range:</label>
+        <input type="text" id="heatmap-slider-time" readonly style="border:10px; color:#f6931f; font-weight:bold;">
     </div>
 </div>
 

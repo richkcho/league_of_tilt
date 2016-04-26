@@ -45,8 +45,8 @@ function renderMapOutputTimeRegion() {
     }
 
     // get the time info from the slider position
-    timestart = $("#map-slider-div").slider("values", 0);
-    timeend = $("#map-slider-div").slider("values", 1);
+    timestart = $(map.slider.divId).slider("values", 0);
+    timeend = $(map.slider.divId).slider("values", 1);
 
     // set player name
     $("#summoner_name").val(lookupPlayerName(summonerID));
@@ -142,18 +142,21 @@ function initMap() {
     //document.getElementById("map-slider-div").innerHTML +=
     //    "<input id='map-slider' type='range' step=1 min=0 /> ";
 
-    $( "#map-slider-div" ).slider({
+    map.slider = {};
+    map.slider.textboxId = "#map-slider-time";
+    map.slider.divId = "#map-slider-div";
+
+    $(map.slider.divId).slider({
         range: true,
         min: 0,
-        max: 30,
-        values: [ 0, 30 ],
+        max: 60,
+        values: [ 0, 60 ],
         slide: function( event, ui ) {
-            $( "#slider-time" ).val( "" + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+            $(map.slider.textboxId).val( "" + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
         }
     });
-    $( "#slider-time" ).val( "" + $( "#map-slider-div" ).slider( "values", 0 ) +
-        " - " + $( "#map-slider-div" ).slider( "values", 1 ) );
-
+    $(map.slider.textboxId).val( "" + $(map.slider.divId).slider( "values", 0 ) +
+        " - " + $(map.slider.divId).slider( "values", 1 ) );
 
     map.initialized = true;
     console.log("Initialized map");
@@ -234,8 +237,8 @@ function transition(circle, path) {
             .attrTween("transform", translateAlong(path.node()))
             .each("end", transition);
         // TODO talk about this, might not be the best place to put.
-        $("#map-slider-div").slider("option", "max", path[0][0]["__data__"].length);
-        $("#map-slider-div").slider("value", $("#map-slider-div").slider("value"));
+        //$("#map-slider-div").slider("option", "max", path[0][0]["__data__"].length);
+        //$("#map-slider-div").slider("value", $("#map-slider-div").slider("value"));
 
     }
 

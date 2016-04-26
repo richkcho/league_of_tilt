@@ -44,8 +44,76 @@ function initHeatMap() {
     	.attr('width', heatmap.width)
     	.attr('height', heatmap.height);
 
+    heatmap.slider = {};
+    heatmap.slider.textboxId = "#heatmap-slider-time";
+    heatmap.slider.divId = "#heatmap-slider-div";
+
+    $(heatmap.slider.divId).slider({
+        range: true,
+        min: 0,
+        max: 60,
+        values: [ 0, 60 ],
+        slide: function( event, ui ) {
+            $(heatmap.slider.textboxId).val( "" + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        }
+    });
+    $(heatmap.slider.textboxId).val( "" + $(heatmap.slider.divId).slider( "values", 0 ) +
+        " - " + $(heatmap.slider.divId).slider( "values", 1 ) );
+
+
     heatmap.initialized = true;
     console.log('heatmap initialized');
+}
+
+function renderHeatmapOutputTimeRegion() {
+    if(!heatmap.initialized || !playerInfoLoaded()) {
+        // wait until stuff has loaded TODO error handling
+        console.log("Heatmap not loaded yet!");
+        return;
+    }
+
+    var summonerID = lookupPlayerID($("#summoner_name_heatmap").val());
+    if(summonerID == null) {
+        // invalid player TODO error handling
+        console.log("Invalid player chosen!");
+        return;
+    }
+
+    var lane = "ANY";
+    var role = "ANY";
+    switch($("#role_selected_heatmap").val()) {
+        case "any":
+            break;
+        case "top":
+            lane = "TOP";
+            role = "SOLO";
+            break;
+        case "jg":
+            lane = "JUNGLE";
+            role = "NONE";
+            break;
+        case "mid":
+            lane = "MIDDLE";
+            role = "SOLO";
+            break;
+        case "adc":
+            lane = "BOTTOM";
+            role = "DUO_CARRY";
+            break;
+        case "sup":
+            lane = "BOTTOM";
+            role = "DUO_SUPPORT";
+            break;
+    }
+
+    // get the time info from the slider position
+    timestart = $(heatmap.slider.divId).slider("values", 0);
+    timeend = $(heatmap.slider.divId).slider("values", 1);
+
+    // set player name
+    $("#summoner_name_heatmap").val(lookupPlayerName(summonerID));
+
+    createHeatmapTimeRegion(summonerID, lane, role, timestart, timeend);
 }
 
 function renderHeatMapOutputTimeAll() {

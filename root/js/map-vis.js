@@ -75,6 +75,8 @@ function renderMapOutputTimeAll() {
     var lane = "ANY";
     var role = "ANY";
     switch($("#role_selected").val()) {
+        case "any":
+            break;
         case "top":
             lane = "TOP";
             role = "SOLO";

@@ -209,6 +209,7 @@
     <div class="row map-player-select">
         <input type="text" id="summoner_name" value="Summoner Name">
         <select id="role_selected">
+            <option value="any">Any</option>
             <option value="top">Top</option>
             <option value="jg">Jungle</option>
             <option value="mid">Mid</option>
@@ -243,6 +244,22 @@
     <input type="text" id="test_3" value="Summoner Name">
     <input type="button" id="btnRenderRadar" value="CLICK ME" onclick="renderRadarOutput()">
     <div id="radar-chart-container"></div>
+
+    <div class="row heatmap-player-select">
+        <input type="text" id="summoner_name_heatmap" value="Summoner Name">
+        <select id="role_selected_heatmap">
+            <option value="any">Any</option>
+            <option value="top">Top</option>
+            <option value="jg">Jungle</option>
+            <option value="mid">Mid</option>
+            <option value="adc">ADC</option>
+            <option value="sup">Support</option>
+        </select>
+        <input type="button" id="btnRenderHeatmapTimeAll" value="Load Visualization - Time Al" onclick="renderHeatMapOutputTimeAll()">
+    </div>
+    <div class="row">
+        <div id="heatmap-container"></div>
+    </div>
 </div>
 
 <!-- The main page content (just filler for this demo) -->
@@ -263,8 +280,9 @@
 <script src="js/radar-chart.js"></script>
 <script src="js/radar-vis.js"></script>
 <script src="js/map-vis.js"></script>
+<script src="js/heatmap-vis.js"></script>
 <script src="js/main.js"></script>
->>>>>>> refs/remotes/origin/master
+
 
 </body>
 </html>

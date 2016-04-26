@@ -11,3 +11,7 @@ $("#summoner_name").keyup(function(event){
     }
 });
 //endregion
+
+initHeatMap();
+// eventually this will be on a button
+// console.log(getEventData(19738326));

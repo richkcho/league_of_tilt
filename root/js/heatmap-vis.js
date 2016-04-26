@@ -12,7 +12,9 @@ function initHeatMap() {
         max: {x: 15220, y: 14980}
     };
 
-    heatmap.colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"];
+    heatmap.colors = {};
+    heatmap.colors.kill = "#64ed32";
+    heatmap.colors.death = "red";
 
     // svg map settings
     heatmap.width = 500;
@@ -33,7 +35,7 @@ function initHeatMap() {
 
     heatmap.svg = d3.select("#heatmap-container").append("svg:svg")
     	.attr("width", heatmap.width)
-    	.attr("height", heatmap.width)
+    	.attr("height", heatmap.width);
 
     heatmap.bg = heatmap.svg.append('image')
     	.attr('xlink:href', 'img/map.png')
@@ -46,62 +48,101 @@ function initHeatMap() {
     console.log('heatmap initialized');
 }
 
-function renderHeatMapOutput() {
-	// if(!heatmap.initialized || !playerInfoLoaded()) {
- //        // wait until stuff has loaded TODO error handling
- //        console.log("Map not loaded yet!");
- //        return;
- //    }
+function renderHeatMapOutputTimeAll() {
+     if(!heatmap.initialized || !playerInfoLoaded()) {
+	        // wait until stuff has loaded TODO error handling
+	        console.log("Heatmap not loaded yet!");
+	        return;
+     }
 
-    // temporary summonerID - ZionSpartan
-    var summonerID = 19738326;
-    var lane = "TOP";
-    var role = "SOLO";
-    var eventData;
-
-    var locations = new Array(heatmap.gridDenom);
-	for (i=0; i < heatmap.gridDenom; i++) {
-    	locations[i]=new Array(heatmap.gridDenom);
-    	for (var j = 0; j < heatmap.gridDenom; j++) {
-    		locations[i][j] = 0;
-    	}
+    var summonerID = lookupPlayerID($("#summoner_name_heatmap").val());
+    if(summonerID == null) {
+        // invalid player TODO error handling
+        console.log("Invalid player chosen!");
+        return;
     }
 
-    // console.log(tempList)
-    // console.log(Math.floor(heatmap.scale.xScale(420)))
+    var lane = "ANY";
+    var role = "ANY";
+    switch($("#role_selected_heatmap").val()) {
+        case "any":
+            break;
+        case "top":
+            lane = "TOP";
+            role = "SOLO";
+            break;
+        case "jg":
+            lane = "JUNGLE";
+            role = "NONE";
+            break;
+        case "mid":
+            lane = "MIDDLE";
+            role = "SOLO";
+            break;
+        case "adc":
+            lane = "BOTTOM";
+            role = "DUO_CARRY";
+            break;
+        case "sup":
+            lane = "BOTTOM";
+            role = "DUO_SUPPORT";
+            break;
+    }
 
-    d3.json("data/eventdata/" + summonerID + ".json", function(err, data) {
-    	console.log(data);
-    	var types = {
-    		Kill: {
-    			loc: locations
-    		},
-    		Death: {
-    			loc: locations
-    		}
-    	};
-	    function aggregate(element, index, array) {
-	    	var arr = element.Frames;
-	    	arr.forEach(function(elt, index, array) {
-	    		elt.forEach(function(i_elt, i_index, i_array) {
-	    			// for each element populate two-dimensional array for heatmap (x,y kill/death locations)
-	    			types[i_elt.Type].loc[Math.floor(heatmap.scale.xScale(i_elt.Location[0])/heatmap.gridSize)][Math.floor(heatmap.scale.xScale(i_elt.Location[1])/heatmap.gridSize)]++;
-	    		})
-	    	});
-	    }
-	    data.forEach(aggregate);
-	    //console.log(types.Kill.loc)
+    // set player name
+    $("#summoner_name_heatmap").val(lookupPlayerName(summonerID));
 
-	    // initialize heatmap for kills as test
-	    var heatmap.colorScale = d3.scale.quantile()
-	    	.domain([0, heatmap.colors.length - 1, d3.max(types.Kill.loc, function (d) {
-	    		return d3.max(d, function(elt) {
-	    			return elt;
-	    		});
-	    	});])
-	    	.range(heatmap.colors);
+	createHeatmapTimeAll(summonerID, lane, role);
+}
 
-	    var tiles = heatmap.svg('.tile')
-	    	.data()
-    });
+function createHeatmapTimeRegion(playerID, playerLane, playerRole, timeStart, timeEnd) {
+	d3.json("data/eventdata/" + playerID + ".json", function(error, mapdata) {
+		// clear old stuff in svg
+		heatmap.svg.selectAll("circle").remove();
+
+		// filter mapdata by role and lane
+		mapdata = filterData(mapdata, playerLane, playerRole);
+
+		var color = d3.scale.category20();
+		color.domain(
+			Array.apply(null, Array(mapdata.length))
+				.map(function (_, i) {
+					return i
+				}));
+
+		for(var i = 0; i < mapdata.length; ++i) {
+			var points = mapdata[i].Frames;
+
+			points = points.filter(function(d, i, arr) {
+				return (timeStart == "START" || timeStart <= i) &&
+					(timeEnd == "END" || i <= timeEnd);
+			});
+
+			if(points.length > 0) {
+
+				// scale the points
+				points.forEach(function (e, ei, earr) {
+                    if(e.length > 0) {
+                        e.forEach(function(d, di, darr) {
+                            heatmap.svg.append("circle")
+                                .attr("r", 12)
+                                .attr("fill", (d["Type"] == "Kill" ? heatmap.colors.kill : heatmap.colors.death))
+                                .attr("class", "heatmap")
+                                .attr("fill-opacity", "0.25")
+                                .attr("transform", "translate(" + [heatmap.scale.xScale(d["Location"][0]), heatmap.scale.yScale(d["Location"][1])] + ")");
+                        });
+                    }
+				});
+
+			} else {
+				// handle this case TODO show message saying no games found
+			}
+
+		}
+
+	});
+}
+
+function createHeatmapTimeAll(playerID, playerLane, playerRole) {
+	createHeatmapTimeRegion(playerID, playerLane, playerRole, "START", "END");
 }

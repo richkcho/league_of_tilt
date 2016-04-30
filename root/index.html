@@ -20,13 +20,6 @@
     <!-- Custom CSS code -->
     <link rel="stylesheet" href="css/style.css">
 
-
-    <script>
-        $(function() {
-            $("#nav").sticky({topSpacing:0});
-        });
-    </script>
-
 </head>
 <body>
 
@@ -206,7 +199,7 @@
     </div>
 
     <div id="map-player-select" class="row">
-        <input type="text" id="summoner_name" value="Summoner Name">
+        <input type="text" id="summoner_name" value="Summoner Name" class="auto">
         <select id="role_selected">
             <option value="any">Any</option>
             <option value="top">Top</option>
@@ -231,23 +224,23 @@
     <div id="map-slider-container">
         <div id="map-slider-div"></div>
         <label for="map-slider-time">Time range:</label>
-        <input type="text" id="map-slider-time" readonly style="border:10px; color:#f6931f; font-weight:bold;">
+        <input type="text" id="map-slider-time" readonly style="border:10px; color:#f6931f; font-weight:bold;" class="auto">
     </div>
 
     <div class="row">
         <h1 class="section-title"> Radar Chart</h1>
     </div>
-    <input type="text" id="test_1" value="Summoner Name">
-    <input type="text" id="test_2" value="Summoner Name">
-    <input type="text" id="test_3" value="Summoner Name">
-    <input type="button" id="btnRenderRadar" value="CLICK ME" onclick="renderRadarOutput()">
+    <input type="text" id="test_1" value="Summoner Name" class="auto">
+    <input type="text" id="test_2" value="Summoner Name" class="auto">
+    <input type="text" id="test_3" value="Summoner Name" class="auto">
+    <input type="button" id="btnRenderRadar" value="Load Data" onclick="renderRadarOutput()">
     <div id="radar-chart-container"></div>
 
     <div class="row">
         <h1 class="section-title">Interactive Heatmap</h1>
     </div>
     <div id="heatmap-player-select" class="row">
-        <input type="text" id="summoner_name_heatmap" value="Summoner Name">
+        <input type="text" id="summoner_name_heatmap" value="Summoner Name" class="auto">
         <select id="role_selected_heatmap">
             <option value="any">Any</option>
             <option value="top">Top</option>
@@ -265,7 +258,7 @@
     <div id="heatmap-slider-container">
         <div id="heatmap-slider-div"></div>
         <label for="heatmap-slider-time">Time range:</label>
-        <input type="text" id="heatmap-slider-time" readonly style="border:10px; color:#f6931f; font-weight:bold;">
+        <input type="text" id="heatmap-slider-time" readonly style="border:10px; color:#f6931f; font-weight:bold;" class="auto">
     </div>
 </div>
 
@@ -290,6 +283,28 @@
 <script src="js/heatmap-vis.js"></script>
 <script src="js/main.js"></script>
 
+<!-- Sticky NavBar Script -->
+<script>
+    $(document).ready(function() {
+        $("#nav").sticky({topSpacing:0});
+    });
+</script>
+
+<!-- Autocomplete script -->
+<script>
+    $(document).ready(function() {
+        var AvailableTags = [];
+        $.getJSON('data/player_id_name_map.json', function( data ) {
+            var items = [];
+            $.each( data, function( key, val ) {
+                items.push(val);
+            });
+            $(".auto").autocomplete({
+                source: items
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

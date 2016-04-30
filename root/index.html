@@ -36,8 +36,9 @@
             <ul>
                 <li><a href="#top" class="smoothScroll">Main Page</a></li>
                 <li><a href="#profile-break" class="smoothScroll">Player Profiles</a></li>
-                <li><a href="#map" class="smoothScroll">Map Visualization</a></li>
-                <li><a href="#radarchart" class="smoothScroll">Radar Chart Visualization</a></li>
+                <li><a href="#profile-break1" class="smoothScroll">Map Visualization</a></li>
+                <li><a href="#profile-break2" class="smoothScroll">Radar Chart Visualization</a></li>
+                <li><a href="#profile-break3" class="smoothScroll">Interactive Heatmap</a></li>
             </ul>
             <br class="clearLeft" />
         </div>
@@ -82,14 +83,13 @@
 
 <div id="player-profile-header">
     <h1>Player Profiles</h1>
-    <h5>Click on a description for a link to a complete player profile</h5>
 </div>
 
 <hr class="prof-sep">
 
 <div id="wrapper">
     <div id="columns">
-        <a href="#top" class="smoothScroll">
+        <a href="#profile-break" class="smoothScroll">
             <div class="pin">
                 <img src="img/double.jpg" />
                 <h4>Doublelift "Doublelift" (ADC)</h4>
@@ -99,7 +99,7 @@
             </div>
         </a>
 
-        <a href="#top" class="smoothScroll">
+        <a href="#profile-break" class="smoothScroll">
             <div class="pin">
                 <img src="img/sneaky.jpg" />
                 <h4>Sneaky "C9 Sneaky" (ADC)</h4>
@@ -109,7 +109,7 @@
             </div>
         </a>
 
-        <a href="profiles/bjergsen.html" class="smoothScroll">
+        <a href="#profile-break" class="smoothScroll">
             <div class="pin">
                 <img src="img/bjergsen.jpg" />
                 <h4>Bjersen "mid is sucess" (MID)</h4>
@@ -119,7 +119,7 @@
             </div>
         </a>
 
-        <a href="#top" class="smoothScroll">
+        <a href="#profile-break" class="smoothScroll">
             <div class="pin">
                 <img src="img/huni.jpeg" />
                 <h4>Huni "ADC Huni" (TOP)</h4>
@@ -129,7 +129,7 @@
             </div>
         </a>
 
-        <a href="#top" class="smoothScroll">
+        <a href="#profile-break" class="smoothScroll">
             <div class="pin">
                 <img src="img/darshan.jpg" />
                 <h4>Darshan "ZionSpartan" (TOP)</h4>
@@ -139,7 +139,7 @@
             </div>
         </a>
 
-        <a href="#top" class="smoothScroll">
+        <a href="#profile-break" class="smoothScroll">
             <div class="pin">
                 <img src="img/rush.jpg" />
                 <h4>Rush "Rush" (JUNGLE)</h4>
@@ -149,7 +149,7 @@
             </div>
         </a>
 
-        <a href="#top" class="smoothScroll">
+        <a href="#profile-break" class="smoothScroll">
             <div class="pin">
                 <img src="img/wildTurtle.jpg" />
                 <h4>WildTurtle "WildTurtle" (ADC)</h4>
@@ -159,7 +159,7 @@
             </div>
         </a>
 
-        <a href="#top" class="smoothScroll">
+        <a href="#profile-break" class="smoothScroll">
             <div class="pin">
                 <img src="img/impact.jpg" />
                 <h4>Impact "Impact" (TOP)</h4>
@@ -169,7 +169,7 @@
             </div>
         </a>
 
-        <a href="#top" class="smoothScroll">
+        <a href="#profile-break" class="smoothScroll">
             <div class="pin">
                 <img src="img/piglet.jpg" />
                 <h4>Piglet "GodPiglet" (ADC)</h4>
@@ -179,7 +179,7 @@
             </div>
         </a>
 
-        <a href="#top" class="smoothScroll">
+        <a href="#profile-break" class="smoothScroll">
             <div class="pin">
                 <img src="img/kiwikid.jpg" />
                 <h4>KiWiKiD "KiWiKiD" (SUPPORT)</h4>
@@ -191,12 +191,24 @@
     </div>
 </div>
 
-<hr class="prof-sep">
-
 <div class="container">
+    <div id="profile-break1">
+        <br/>
+    </div>
+
     <div class="row">
         <h1 class="section-title">Interactive Map</h1>
     </div>
+
+    <hr class="prof-sep">
+
+    <p>We designed the interactive map specifically so that users would have the capability to explore map movement trends over the course of games for specific players. For example, load up Dyrus in the position "TOP". This visualization will help us understand the current state of the game. If you'd like to test the visualization, run it for the full game. You'll see Dyrus' map movements evolve as the game progresses. We, however, are interested to see if we can break it down a bit further than that.</p>
+    <br/>
+    <p>Narrowing the time range to 1-10 minutes can be quite revealing. What we see is that Dyrus' position bounces between the top lane and the middle and bottom lanes. Because of the structure of the data, we needed to interpolate map movements, but what those forays from the top lane actually represent are most likely teleports. Dyrus is using Teleport to assist his other lanes. This is very revealing of the current prevailing play style: isolate your top laner but ensure that he or she has teleport ready to assist other lanes in case they come under pressure from ganks or from mid lane roams.</p>
+    <br/>
+    <p>Now change the time range to 15-25 minutes to contrast the mid-game with the early-game. Here we see that Dyrus spends his time distributed throughout the map. Most likely this is because (with a few exceptions such as split pushing) players tend to group during the mid-game around timings that their characters are strong (when they complete a strong item, or reach a certain level to unlock an important ability, etc.). This also allows them to start accruing global gold and advantages from taking objectives around the map as a team.</p>
+    <br/>
+    <p>We should be able to answer a whole bunch of questions just by looking at this map. For example, what time does lane phase usually break down? Do certain players put more emphasis on lane dominance than grouping with their team? Try it out and see what trends you can find!</p>
 
     <div id="map-player-select" class="row">
         <input type="text" id="summoner_name" value="Summoner Name" class="auto">
@@ -208,8 +220,8 @@
             <option value="adc">ADC</option>
             <option value="sup">Support</option>
         </select>
-        <input type="button" id="btnRenderMapTimeAll" value="Load Visualization - Time Al" onclick="renderMapOutputTimeAll()">
-        <input type="button" id="btnRenderMapTimeRegion" value="Load Visualization - Time Region" onclick="renderMapOutputTimeRegion()">
+        <input type="button" id="btnRenderMapTimeAll" value="Load Full Game" onclick="renderMapOutputTimeAll()">
+        <input type="button" id="btnRenderMapTimeRegion" value="Load Time Region" onclick="renderMapOutputTimeRegion()">
     </div>
 
 	<div id="map-vis-container" class="row">
@@ -227,18 +239,34 @@
         <input type="text" id="map-slider-time" readonly style="border:10px; color:#f6931f; font-weight:bold;" class="auto">
     </div>
 
+    <div id="profile-break2">
+        <br/>
+    </div>
+
     <div class="row">
         <h1 class="section-title"> Radar Chart</h1>
     </div>
-    <input type="text" id="test_1" value="Summoner Name" class="auto">
-    <input type="text" id="test_2" value="Summoner Name" class="auto">
-    <input type="text" id="test_3" value="Summoner Name" class="auto">
-    <input type="button" id="btnRenderRadar" value="Load Data" onclick="renderRadarOutput()">
-    <div id="radar-chart-container"></div>
+
+    <hr class="prof-sep">
+
+    <div id="outer-radar-container">
+        <input type="text" id="test_1" value="Summoner Name" class="auto">
+        <input type="text" id="test_2" value="Summoner Name" class="auto">
+        <input type="text" id="test_3" value="Summoner Name" class="auto">
+        <input type="button" id="btnRenderRadar" value="Load Data" onclick="renderRadarOutput()">
+        <div id="radar-chart-container"></div>
+    </div>
+
+    <div id="profile-break3">
+        <br/>
+    </div>
 
     <div class="row">
         <h1 class="section-title">Interactive Heatmap</h1>
     </div>
+
+    <hr class="prof-sep">
+
     <div id="heatmap-player-select" class="row">
         <input type="text" id="summoner_name_heatmap" value="Summoner Name" class="auto">
         <select id="role_selected_heatmap">
@@ -249,8 +277,8 @@
             <option value="adc">ADC</option>
             <option value="sup">Support</option>
         </select>
-        <input type="button" id="btnRenderHeatmapTimeAll" value="Load Visualization - Time Al" onclick="renderHeatMapOutputTimeAll()">
-        <input type="button" id="btnRenderHeatmapTimeRegion" value="Load Visualization - Time Region" onclick="renderHeatmapOutputTimeRegion()">
+        <input type="button" id="btnRenderHeatmapTimeAll" value="Load Full Game" onclick="renderHeatMapOutputTimeAll()">
+        <input type="button" id="btnRenderHeatmapTimeRegion" value="Load Time Region" onclick="renderHeatmapOutputTimeRegion()">
     </div>
     <div class="row">
         <div id="heatmap-container"></div>
@@ -282,6 +310,8 @@
 <script src="js/map-vis.js"></script>
 <script src="js/heatmap-vis.js"></script>
 <script src="js/main.js"></script>
+
+<script src="js/timeline.js"></script>
 
 <!-- Sticky NavBar Script -->
 <script>

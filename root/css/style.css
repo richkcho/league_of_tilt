@@ -1,7 +1,7 @@
 .ui-slider {
 	width: 500px;
+	margin: 4.7px 0;
 }
-
 
 /* custom styles */
 .section-title {
@@ -31,7 +31,7 @@ path {
 
 body {
 	/*background-color: #8585ad;*/
-	background-color: #333;  
+	background-color: #444;  
    	color: #999;
    	font: 12px/1.4em 'Open Sans', sans-serif;
    	/*font: 12px/1.4em 'IM Fell Double Pica SC', serif;*/
@@ -240,6 +240,9 @@ body {
 .prof-sep {
 	width: 75%;
 }
+.container .prof-sep {
+	width: 100%;
+}
 
 .p-profile {
 	margin-left: 100px;
@@ -250,3 +253,75 @@ body {
 	color: #ff4d4d;
 }
 
+#heatmap-player-select,
+#heatmap-container,
+#heatmap-slider-container {
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#outer-radar-container {
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.container p {
+	font-size: 12pt;
+}
+
+/*Text box styling*/
+input[type="text"] {
+  padding: 10px;
+  border: solid 1px #fff;
+  box-shadow: inset 1px 1px 2px 0 #707070;
+  transition: box-shadow 0.3s;
+}
+input[type="text"]:focus,
+input[type="text"].focus {
+  box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+}
+
+/*Button Styling*/
+input[type="button"] {
+  color: #fff;
+  background-color: #999;
+  text-shadow: -1px 1px #444;
+  border: none;
+}
+
+input[type="button"]:hover,
+input[type="button"].hover {
+  background-color: #346392;
+  text-shadow: -1px 1px #27496d;
+}
+
+input[type="button"]:active,
+input[type="button"].active {
+  background-color: #27496d;
+  text-shadow: -1px 1px #193047;
+}
+
+/*Dropdown Styling*/
+
+/* The CSS */
+select {
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#888;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}

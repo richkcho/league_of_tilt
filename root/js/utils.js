@@ -146,7 +146,8 @@ function normalizeAverageStats(avgstats, lane, role) {
     var globalstds = getGlobalStds(lane, role);
 
     for(var key in avgstats) {
-        avgstatsnorm[key] = (avgstats[key] - globalavgs[key])/(2*globalstds[key]);
+        var rawnorm = 1 + (avgstats[key] - globalavgs[key])/globalstds[key];
+        avgstatsnorm[key] = 1.5 + Math.sign(rawnorm)*Math.log(Math.abs(rawnorm));
     }
 
     return avgstatsnorm;

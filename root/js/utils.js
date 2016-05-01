@@ -16,6 +16,7 @@ util.playerstats.std = {};
 util.playerstats.std_loaded = false;
 util.ignorethese = new Set(["MatchID", "Role", "Lane"]);
 util.statfields = ["Kills", "Deaths", "Assists", "GoldEarned", "Winner", "GameDuration", "GamesPlayed"];
+util.statkeymap = {GoldEarned: "Gold Earned", GameDuration: "Game Duration", GamesPlayed:"Games Played", Winner:"Win Rate"};
 
 //region Load Static Information
 d3.json("data/player_name_id_map.json", function(data) {
@@ -157,4 +158,11 @@ function loadPlayerStats(summonerID, callback) {
     d3.json("data/playerstats/" + summonerID + ".json", function(err, data) {
         callback(err, {"SummonerID": summonerID, "Stats": data});
     });
+}
+
+function keyToString(key) {
+    if(key in util.statkeymap) {
+        return util.statkeymap[key];
+    }
+    return key;
 }

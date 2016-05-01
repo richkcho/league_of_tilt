@@ -21,7 +21,7 @@ var RadarChart = {
         backgroundTooltipColor: "#555",
         backgroundTooltipOpacity: "0.7",
         tooltipColor: "white",
-        margin: {bottom: 0, left: 50, right: 80, top: 00},
+        margin: {bottom: 0, left: 50, right: 80, top: 0}, // rhco modified: not "true" margins since modifies w/h of svg
         axisJoin: function(d, i) {
             return d.className || i;
         },

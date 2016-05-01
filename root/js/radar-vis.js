@@ -57,7 +57,7 @@ function convertStatsToRadarData(name, stats, lane, role) {
     var axes = [];
     var normedstats = normalizeAverageStats(stats, lane, role);
     util.statfields.forEach(function(key, index, arr) {
-        axes.push({axis: key, value: normedstats[key] + 1, rawvalue: stats[key]}); // thus a value of 1 be normal
+        axes.push({axis: keyToString(key), value: normedstats[key] + 1, rawvalue: stats[key]}); // thus a value of 1 be normal
     });
     tempdata.axes = axes;
 

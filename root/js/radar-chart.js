@@ -21,6 +21,7 @@ var RadarChart = {
         backgroundTooltipColor: "#555",
         backgroundTooltipOpacity: "0.7",
         tooltipColor: "white",
+        margin: {bottom: 0, left: 50, right: 80, top: 00},
         axisJoin: function(d, i) {
             return d.className || i;
         },
@@ -57,7 +58,7 @@ var RadarChart = {
                     .attr("height", bbox.height + (padding*2))
                     .attr("rx","5").attr("ry","5")
                     .style("fill", cfg.backgroundTooltipColor).style("opacity", cfg.backgroundTooltipOpacity);
-                tooltip.attr("transform", "translate(" + (coords[0]+10) + "," + (coords[1]-10) + ")")
+                tooltip.attr("transform", "translate(" + (coords[0]+10+cfg.margin.left) + "," + (coords[1]-10 + cfg.margin.top) + ")")
             }
         }
         function radar(selection) {
@@ -156,7 +157,7 @@ var RadarChart = {
                             }
                         })
                         .attr('transform', function(levelFactor) {
-                            return 'translate(' + (cfg.w/2-levelFactor) + ', ' + (cfg.h/2-levelFactor) + ')';
+                            return 'translate(' + (cfg.margin.left + cfg.w/2-levelFactor) + ', ' + (cfg.margin.top + cfg.h/2-levelFactor) + ')';
                         });
                 }
                 else{
@@ -167,7 +168,7 @@ var RadarChart = {
                         .attr('x2', function(levelFactor, i){ return getHorizontalPosition(i+1, levelFactor); })
                         .attr('y2', function(levelFactor, i){ return getVerticalPosition(i+1, levelFactor); })
                         .attr('transform', function(levelFactor) {
-                            return 'translate(' + (cfg.w/2-levelFactor) + ', ' + (cfg.h/2-levelFactor) + ')';
+                            return 'translate(' + (cfg.margin.left + cfg.w/2-levelFactor) + ', ' + (cfg.margin.top + cfg.h/2-levelFactor) + ')';
                         });
                 }
                 if(cfg.axisLine || cfg.axisText) {
@@ -187,10 +188,10 @@ var RadarChart = {
 
                     if(cfg.axisLine) {
                         axis.select('line')
-                            .attr('x1', cfg.w/2)
+                            .attr('x1', cfg.margin.left + cfg.w/2)
                             .attr('y1', cfg.h/2)
-                            .attr('x2', function(d, i) { return (cfg.w/2-radius2)+getHorizontalPosition(i, radius2, cfg.factor); })
-                            .attr('y2', function(d, i) { return (cfg.h/2-radius2)+getVerticalPosition(i, radius2, cfg.factor); });
+                            .attr('x2', function(d, i) { return (cfg.margin.left + cfg.w/2-radius2)+getHorizontalPosition(i, radius2, cfg.factor); })
+                            .attr('y2', function(d, i) { return (cfg.margin.top + cfg.h/2-radius2)+getVerticalPosition(i, radius2, cfg.factor); });
                     }
 
                     if(cfg.axisText) {
@@ -206,16 +207,16 @@ var RadarChart = {
                                 return ((p < 0.1) ? '1em' : ((p > 0.9) ? '0' : '0.5em'));
                             })
                             .text(function(d) { return d.name; })
-                            .attr('x', function(d, i){ return d.xOffset+ (cfg.w/2-radius2)+getHorizontalPosition(i, radius2, cfg.factorLegend); })
-                            .attr('y', function(d, i){ return d.yOffset+ (cfg.h/2-radius2)+getVerticalPosition(i, radius2, cfg.factorLegend); });
+                            .attr('x', function(d, i){ return d.xOffset+ (cfg.margin.left + cfg.w/2-radius2)+getHorizontalPosition(i, radius2, cfg.factorLegend); })
+                            .attr('y', function(d, i){ return d.yOffset+ (cfg.margin.top + cfg.h/2-radius2)+getVerticalPosition(i, radius2, cfg.factorLegend); });
                     }
                 }
 
                 // content
                 data.forEach(function(d){
                     d.axes.forEach(function(axis, i) {
-                        axis.x = (cfg.w/2-radius2)+getHorizontalPosition(i, radius2, (parseFloat(Math.max(axis.value - cfg.minValue, 0))/maxValue)*cfg.factor);
-                        axis.y = (cfg.h/2-radius2)+getVerticalPosition(i, radius2, (parseFloat(Math.max(axis.value - cfg.minValue, 0))/maxValue)*cfg.factor);
+                        axis.x = (cfg.margin.left + cfg.w/2-radius2)+getHorizontalPosition(i, radius2, (parseFloat(Math.max(axis.value - cfg.minValue, 0))/maxValue)*cfg.factor);
+                        axis.y = (cfg.margin.top + cfg.h/2-radius2)+getVerticalPosition(i, radius2, (parseFloat(Math.max(axis.value - cfg.minValue, 0))/maxValue)*cfg.factor);
                     });
                 });
                 var polygon = container.selectAll(".area").data(data, cfg.axisJoin);
@@ -368,8 +369,8 @@ var RadarChart = {
         d3.select(id).select('svg').remove();
         d3.select(id)
             .append("svg")
-            .attr("width", cfg.w)
-            .attr("height", cfg.h)
+            .attr("width", cfg.w +  cfg.margin.left + cfg.margin.right) // modified rcho
+            .attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom) // modified rcho
             .datum(d)
             .call(chart);
     }

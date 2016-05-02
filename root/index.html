@@ -249,6 +249,11 @@
 
     <hr class="prof-sep">
 
+    <p>We played around with a few different ideas for how to compare player statistics. There are so many relevant statistics that the player comparison would have quickly become cluttered and difficult to read when comparing multiple players using a traditional statistical plot. Therefore we decided to use a radar chart.</p>
+    <br/>
+    <p>The reason that we created this particular chart is so that we could easily profile players based on a variety of important summary statistics. For example, if we look at Doublelift, we can easily categorize him as an aggressive player. He has dramatically more kills and generally higher gold per game than the average player. These types of insights will hopefully help players to categorize and imitate the playstyles of their favorite solo queue heroes.</p>
+    <br/>
+
     <div id="outer-radar-container">
         <input type="text" id="test_1" value="Summoner Name" class="auto">
         <input type="text" id="test_2" value="Summoner Name" class="auto">
@@ -266,6 +271,11 @@
     </div>
 
     <hr class="prof-sep">
+
+    <p>The heatmap was a design decision that we made because while the previous two visualizations give a plethora of information about the flow of the game, we wanted to include a clear visualization of the two most important events in League of Legends: kills and deaths. The goal with the interactive heatmap is to allow viewers to examine when certain players play more aggressively, when it pays off, when it's risky, and where most players concentrate their efforts throughout different phases of the game.</p>
+    <br/>
+    <p>On this heatmap green dots represent kills and red dots represent deaths. We believe that this visualization pairs particularly well with the first two in order to decode summoner playstyles and map movements.</p>
+    <br/>
 
     <div id="heatmap-player-select" class="row">
         <input type="text" id="summoner_name_heatmap" value="Summoner Name" class="auto">

@@ -211,7 +211,7 @@
     <p>We should be able to answer a whole bunch of questions just by looking at this map. For example, what time does lane phase usually break down? Do certain players put more emphasis on lane dominance than grouping with their team? Try it out and see what trends you can find!</p>
 
     <div id="map-player-select" class="row">
-        <input type="text" id="summoner_name" value="Summoner Name" class="auto">
+        <input type="text" id="summoner_name" class="auto" placeholder="Summoner Name">
         <select id="role_selected">
             <option value="any">Any</option>
             <option value="top">Top</option>
@@ -255,9 +255,9 @@
     <br/>
 
     <div id="outer-radar-container">
-        <input type="text" id="test_1" value="Summoner Name" class="auto">
-        <input type="text" id="test_2" value="Summoner Name" class="auto">
-        <input type="text" id="test_3" value="Summoner Name" class="auto">
+        <input type="text" id="test_1" class="auto" placeholder="Summoner Name">
+        <input type="text" id="test_2" class="auto" placeholder="Summoner Name">
+        <input type="text" id="test_3" class="auto" placeholder="Summoner Name">
         <input type="button" id="btnRenderRadar" value="Load Data" onclick="renderRadarOutput()">
         <div id="radar-chart-container"></div>
     </div>
@@ -278,7 +278,7 @@
     <br/>
 
     <div id="heatmap-player-select" class="row">
-        <input type="text" id="summoner_name_heatmap" value="Summoner Name" class="auto">
+        <input type="text" id="summoner_name_heatmap" placeholder="Summoner Name" class="auto">
         <select id="role_selected_heatmap">
             <option value="any">Any</option>
             <option value="top">Top</option>

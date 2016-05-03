@@ -199,7 +199,7 @@ function animateMapTimeRegion(playerID, playerLane, playerRole, timeStart, timeE
                         .interpolate("linear"));
 
                 var circle = map.svg.append("circle")
-                    .attr("r", 9)
+                    .attr("r", 5)
                     .attr("fill", color(i))
                     .attr("transform", "translate(" + points[0] + ")");
 

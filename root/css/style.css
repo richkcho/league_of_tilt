@@ -256,13 +256,13 @@ body {
 #heatmap-player-select,
 #heatmap-container,
 #heatmap-slider-container {
-	width: 500px;
+	width: 550px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 #outer-radar-container {
-	width: 500px;
+	width: 600px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -331,7 +331,7 @@ select {
 #test_2,
 #test_3{
 	padding: 12px 8px;
-	width: 120px;
+	width: 140px;
 	margin: 0px 1px;
 	font-size: 12px;
 }

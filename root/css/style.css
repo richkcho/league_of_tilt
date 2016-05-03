@@ -325,3 +325,29 @@ select {
     appearance:none;
     cursor:pointer;
 }
+#summoner_name,
+#summoner_name_heatmap,{
+
+}
+
+#role_selected,
+#role_selected_heatmap{
+	background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+	background-color: #CCCCCC;
+	border: none;
+	font-size: 14px;
+	height: 36px;
+	overflow: hidden;
+	width: 100px;
+	margin-left: 2px;
+	margin-right: 32px;
+}
+
+#btnRenderMapTimeAll,
+#btnRenderMapTimeRegion,
+#btnRenderRadar,
+#btnRenderHeatmapTimeAll,
+#btnRenderHeatmapTimeRegion{
+	padding: 14px 20px;
+	margin: 10px 3px;
+}

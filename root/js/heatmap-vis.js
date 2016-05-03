@@ -193,10 +193,10 @@ function createHeatmapTimeRegion(playerID, playerLane, playerRole, timeStart, ti
                     if(e.length > 0) {
                         e.forEach(function(d, di, darr) {
                             heatmap.svg.append("circle")
-                                .attr("r", 12)
+                                .attr("r", 5)
                                 .attr("fill", (d["Type"] == "Kill" ? heatmap.colors.kill : heatmap.colors.death))
                                 .attr("class", "heatmap")
-                                .attr("fill-opacity", "0.25")
+                                .attr("fill-opacity", "0.5")
                                 .attr("transform", "translate(" + [heatmap.scale.xScale(d["Location"][0]), heatmap.scale.yScale(d["Location"][1])] + ")");
                         });
                     }

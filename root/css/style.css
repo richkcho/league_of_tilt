@@ -66,12 +66,13 @@ body {
 }
 
 #navWrap {
-   height: 30px;
+   height: 50px;
+	background: #999967;
 }
 
 #nav {
-   padding: 5px;
-   background: #999;    
+   padding: 10px;
+   background: #999967;
 }
 
 #nav ul {
@@ -79,18 +80,16 @@ body {
    padding: 0;    
 }
 
+
 #nav li {
    float: left;
-   padding: 3px 8px;
-   background-color: #FFF;
-   margin: 0 10px 0 0;
-   color: #F00;
+   padding: 3px 4px;
+   margin: 0 1px 0 0;
    list-style-type: none;
 }
 
 #nav li a {
-   color: #F00;  
-   text-decoration: none;    
+   text-decoration: none;
 }
 
 #nav li a:hover {
@@ -325,6 +324,28 @@ select {
     appearance:none;
     cursor:pointer;
 }
+
+.smoothScroll{
+	background: #999967;
+	background-image: -webkit-linear-gradient(top, #999967, #999967);
+	background-image: -moz-linear-gradient(top, #999967, #999967);
+	background-image: -ms-linear-gradient(top, #999967, #999967);
+	background-image: -o-linear-gradient(top, #999967, #999967);
+	background-image: linear-gradient(to bottom, #999967, #999967);
+	border-radius: 8px;
+	font-family: Arial;
+	color: #ffffff;
+	font-size: 20px;
+	padding: 5px 10px 5px 10px;
+	border: solid #999967 2px;
+	text-decoration: none;
+}
+
+.smoothScroll:hover {
+	background: #CCCC9A;
+	text-decoration: none;
+}
+
 #summoner_name,
 #summoner_name_heatmap,
 #test_1,

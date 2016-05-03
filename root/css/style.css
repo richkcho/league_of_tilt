@@ -331,8 +331,9 @@ select {
 #test_2,
 #test_3{
 	padding: 12px 8px;
-	width: 125px;
+	width: 120px;
 	margin: 0px 1px;
+	font-size: 12px;
 }
 
 #role_selected,
@@ -355,4 +356,5 @@ select {
 #btnRenderHeatmapTimeRegion{
 	padding: 14px 22px;
 	margin: 10px 3px;
+	font-size: 12px;
 }

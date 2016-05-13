@@ -37,7 +37,7 @@ The matches were analyzed to find premades, premades being a group of players wh
 - 1 quad, 1 solo: 168 (15%)
 - another 5 man premade: 70 (6%)
 
-This time I also ran win-rate analysis. The win rates of the 5 man premade vs the other team based on the premade breakdown of the other team is as follows:
+I also ran win-rate analysis. The win rates of the 5 man premade vs the other team based on the premade breakdown of the other team is as follows:
 
 - vs 5 solo: 70% (179/255)
 - vs 1 duo, 3 solo: 58% (183/313)
@@ -46,4 +46,4 @@ This time I also ran win-rate analysis. The win rates of the 5 man premade vs th
 - vs 1 trio, 1 duo: 53% (24/45)
 - vs 1 quad, 1 solo: 54% (91/168)
 
-tl;dr Only 6% of games in high elo with a premade 5 are vs another premade 5. Over half of the games are premade 5 vs 3 or 5 solo players. In all of the matchups, the premade 5 is favored to win, sometimes overwhelmingly so. This is unfortunate for the competitive scene in a game that tries to utilize a "Dynamic Queue" similar to what League of Legends is doing, since the high-elo part of the competitive scene suffers from these matchmaking imbalances. 
+tl;dr Only 6% of games in high elo with a premade 5 are vs another premade 5. Over half of the games are premade 5 vs 3 or 5 solo players. In all of the matchups, the premade 5 is favored to win, sometimes overwhelmingly so in the case of vs five solo payers. This is unfortunate for the competitive scene in a game that tries to utilize a "Dynamic Queue" similar to what League of Legends is doing, since the high-elo part of the competitive scene suffers from these matchmaking imbalances. 

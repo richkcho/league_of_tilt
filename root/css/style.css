@@ -1,7 +1,7 @@
 .ui-slider {
 	width: 500px;
+	margin: 4.7px 0;
 }
-
 
 /* custom styles */
 .section-title {
@@ -31,9 +31,9 @@ path {
 
 body {
 	/*background-color: #8585ad;*/
-	background-color: #333;  
+	background-color: #444;  
    	color: #999;
-   	font: 12px/1.4em 'Open Sans', sans-serif;
+   	font: 16px 'Open Sans', sans-serif;
    	/*font: 12px/1.4em 'IM Fell Double Pica SC', serif;*/
 }
 
@@ -41,14 +41,14 @@ body {
 	margin-left: 100px;
 	margin-right: 100px;
 	margin-top: 30px;
-	font: 14px 'Open Sans', sans-serif;
+	/* font: 14px 'Open Sans', sans-serif; */
 }
 
 #glossary {
 	margin-left: 100px;
 	margin-right: 100px;
 	margin-top: 30px;
-	font: 14px 'Open Sans', sans-serif;
+	/* font: 14px 'Open Sans', sans-serif; */
 }
 
 #wrap {
@@ -66,12 +66,13 @@ body {
 }
 
 #navWrap {
-   height: 30px;
+   height: 50px;
+	background: #999967;
 }
 
 #nav {
-   padding: 5px;
-   background: #999;    
+   padding: 10px;
+   background: #999967;
 }
 
 #nav ul {
@@ -79,18 +80,16 @@ body {
    padding: 0;    
 }
 
+
 #nav li {
    float: left;
-   padding: 3px 8px;
-   background-color: #FFF;
-   margin: 0 10px 0 0;
-   color: #F00;
+   padding: 3px 4px;
+   margin: 0 1px 0 0;
    list-style-type: none;
 }
 
 #nav li a {
-   color: #F00;  
-   text-decoration: none;    
+   text-decoration: none;
 }
 
 #nav li a:hover {
@@ -201,7 +200,7 @@ body {
 }
 
 .pin p {
-	font: 12px/18px Arial, sans-serif;
+	font: 14px/18px Arial, sans-serif;
 	color: #333;
 	margin: 7px;
 }
@@ -240,6 +239,9 @@ body {
 .prof-sep {
 	width: 75%;
 }
+.container .prof-sep {
+	width: 100%;
+}
 
 .p-profile {
 	margin-left: 100px;
@@ -250,3 +252,130 @@ body {
 	color: #ff4d4d;
 }
 
+#heatmap-player-select,
+#heatmap-container,
+#heatmap-slider-container {
+	width: 550px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#outer-radar-container {
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.container p {
+	/* font-size: 12pt; */
+}
+
+/*Text box styling*/
+input[type="text"] {
+  padding: 10px;
+  border: solid 1px #fff;
+  box-shadow: inset 1px 1px 2px 0 #707070;
+  transition: box-shadow 0.3s;
+}
+input[type="text"]:focus,
+input[type="text"].focus {
+  box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+}
+
+/*Button Styling*/
+input[type="button"] {
+  color: #fff;
+  background-color: #999;
+  text-shadow: -1px 1px #444;
+  border: none;
+}
+
+input[type="button"]:hover,
+input[type="button"].hover {
+  background-color: #346392;
+  text-shadow: -1px 1px #27496d;
+}
+
+input[type="button"]:active,
+input[type="button"].active {
+  background-color: #27496d;
+  text-shadow: -1px 1px #193047;
+}
+
+/*Dropdown Styling*/
+
+/* The CSS */
+select {
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#888;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
+
+.smoothScroll{
+	background: #999967;
+	background-image: -webkit-linear-gradient(top, #999967, #999967);
+	background-image: -moz-linear-gradient(top, #999967, #999967);
+	background-image: -ms-linear-gradient(top, #999967, #999967);
+	background-image: -o-linear-gradient(top, #999967, #999967);
+	background-image: linear-gradient(to bottom, #999967, #999967);
+	border-radius: 8px;
+	font-family: Arial;
+	color: #ffffff;
+	font-size: 20px;
+	padding: 5px 10px 5px 10px;
+	border: solid #999967 2px;
+	text-decoration: none;
+}
+
+.smoothScroll:hover {
+	background: #CCCC9A;
+	text-decoration: none;
+}
+
+#summoner_name,
+#summoner_name_heatmap,
+#test_1,
+#test_2,
+#test_3{
+	padding: 12px 8px;
+	width: 140px;
+	margin: 0px 1px;
+	font-size: 12px;
+}
+
+#role_selected,
+#role_selected_heatmap{
+	background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+	background-color: #CCCCCC;
+	border: none;
+	/* font-size: 14px; */
+	height: 40px;
+	overflow: hidden;
+	width: 60px;
+	margin-left: 2px;
+	margin-right: 10px;
+}
+
+#btnRenderMapTimeAll,
+#btnRenderMapTimeRegion,
+#btnRenderRadar,
+#btnRenderHeatmapTimeAll,
+#btnRenderHeatmapTimeRegion{
+	padding: 14px 22px;
+	margin: 10px 3px;
+	font-size: 12px;
+}

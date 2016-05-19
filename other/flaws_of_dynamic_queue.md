@@ -8,7 +8,7 @@ If you just want the tl;dr and numbers, skip to the bottom and read the **Result
 
 ## Data Collection:
 
-I amassed 62112 matches which included at least one challenger or master player during the time interval Jan 14 2016 - Mar 30 2016. All of these matches are ranked dynamic queue 5x5. I attempted to obtain around 100 matches per player in challenger/master. (this varied depending on how many games a player has played, of course)
+I amassed 61977 matches which included at least one challenger or master player. The data scraping attempted to obtain around 100 of the most recent ranked matches per player in challenger/master in this case starting from April 23rd. (This would vary based on players activity, inactive players would have older games in their past 100 games compared to a more active player)
 
 ----------
 
@@ -17,9 +17,9 @@ I amassed 62112 matches which included at least one challenger or master player 
 The RiotAPI unfortunately doesn't give us information as to what the premade groups are. So I decided 
 on a way of detecting what I would call "likely premades" by analyzing the graph of players and games. 
 
-Each game consists of 10 people, 5 people per team. For a set of games, we can create an ally player graph where nodes are players and edges exist if players have played on the same team. Edges are weighted based on how many times players have played on the same team. We do the same process for players who were on opposing teams, creating an enemy player graph.
+Each game consists of 10 people, 5 people per team. For a set of games, we can create an ally player [graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)) where [nodes](https://en.wikipedia.org/wiki/Vertex_(graph_theory)) are players and edges exist if players have played on the same team. Edges are weighted based on how many times players have played on the same team. We do the same process for players who were on opposing teams, creating an enemy player graph. 
 
-We then say that for some *n*, two players that have played on the same team for *n* or more games are premade. (in the graph, edges greater than or equal to *n*) We just have to chose *n* such that it is very unlikely for people not in a premade to have played *n* or more games together. I chose this cutoff based on the following reasoning: over a dataset this large, two non-premade players are just as likely to be enemies as they are to be allies. Given that players can't be "premade enemies," the enemy graph edge distribution is the distribution we expect if there were no premades. 99.97% of edges in the enemy graph have weight less than 10. With this I felt comfortable choosing 10 as my cutoff, since the matchmaking system shouldn't randomly put two people on the same team for more than 10 games given how many matches per player I aimed to obtain.
+We then say that for some *n*, two players that have played on the same team for *n* or more games are premade. (in the graph, edges with weight greater than or equal to *n*) We just have to chose *n* such that it is very unlikely for people not in a premade to have played *n* or more games together. I chose this cutoff based on the following reasoning: over a dataset this large, two non-premade players are just as likely to be enemies as they are to be allies. Given that players can't be "premade enemies," the enemy graph edge distribution is the distribution we expect if there were no premades. 99.96% of edges in the enemy graph have weight less than 10. With this I felt comfortable choosing 10 as my cutoff, since the matchmaking system shouldn't randomly put two people on the same team for more than 10 games given how many matches per player I aimed to obtain.
 
 Premades then would be [cliques](https://en.wikipedia.org/wiki/Clique_(graph_theory)) in the ally graph with edge weights all 10 or greater. 
 
@@ -27,17 +27,26 @@ Premades then would be [cliques](https://en.wikipedia.org/wiki/Clique_(graph_the
 
 ## Results, TL;DR:
 
-I then went back over my matches and processed them into premades. There were a total of 1478 games which had at least one 5 man premade. (this might be why Riot doesn't care, matches that include premade 5's statistically speaking are a small minority of matches) The team facing the 5 man premade had the following  distribution of premades:
+The matches were analyzed to find premades, premades being a group of players who have played at least 10 games together on the same team. There were a total of 1129 games which had at least one 5 man premade. (this might be why Riot doesn't care, matches that include premade 5's statistically speaking are a small minority of matches) The team facing the 5 man premade had the following  distribution of premades:
 
-- Number of 1,1,1,1,1: 339 (23%)
-- Number of 2,1,1,1: 372 (25%)
-- Number of 2,2,1: 75 (5%)
-- Number of 3,1,1: 255 (17%)
-- Number of 3,2: 50 (3%)
-- Number of 4,1: 263 (18%)
-- Number of 5: 124 (8%)
+- 5 solo: 255 (23%)
+- 1 duo, 3 solo: 313 (28%)
+- 2 duo, 1 solo: 58 (4%)
+- 1 trio, 2 solo: 220 (19%)
+- 1 trio, 1 duo: 45 (4%)
+- 1 quad, 1 solo: 168 (15%)
+- another 5 man premade: 70 (6%)
 
-tl;dr Only 8% of games in high elo with a premade 5 are vs another premade 5. Nearly half of the games are premade 5 vs 3 or 5 solo players. This is unfortunate for the competitive scene in a game that tries to utilize a "Dynamic Queue" similar to what League of Legends is doing, since the high-elo part of the competitive scene suffers from these matchmaking imbalances. 
+I also ran win-rate analysis. The win rates of the 5 man premade vs the other team based on the premade breakdown of the other team is as follows:
+
+- vs 5 solo: 70% (179/255)
+- vs 1 duo, 3 solo: 58% (183/313)
+- vs 2 duo, 1 solo: 60% (35/58)
+- vs 1 trio, 2 solo: 63% (138/220)
+- vs 1 trio, 1 duo: 53% (24/45)
+- vs 1 quad, 1 solo: 54% (91/168)
+
+tl;dr Only 6% of games in high elo with a premade 5 are vs another premade 5. Over half of the games are premade 5 vs 3 or 5 solo players. In all of the matchups, the premade 5 is favored to win, sometimes overwhelmingly so in the case of vs five solo payers. This is unfortunate for the competitive scene in a game that tries to utilize a "Dynamic Queue" similar to what League of Legends is doing, since the high-elo part of the competitive scene suffers from these matchmaking imbalances. 
 
 ----------
 

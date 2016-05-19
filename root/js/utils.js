@@ -15,6 +15,8 @@ util.playerstats.mean_loaded = false;
 util.playerstats.std = {};
 util.playerstats.std_loaded = false;
 util.ignorethese = new Set(["MatchID", "Role", "Lane"]);
+util.statfields = ["Kills", "Deaths", "Assists", "GoldEarned", "Winner", "GameDuration", "GamesPlayed"];
+util.statkeymap = {GoldEarned: "Gold Earned", GameDuration: "Game Duration", GamesPlayed:"Games Played", Winner:"Win Rate"};
 
 //region Load Static Information
 d3.json("data/player_name_id_map.json", function(data) {
@@ -38,6 +40,11 @@ d3.json("data/player_id_name_map.json", function(data) {
 
 d3.json("data/player_stats_mean.json", function(data) {
     util.playerstats.mean = data;
+    for(var key in util.playerstats.mean[0]) {
+        if(!util.ignorethese.has(key) && util.statfields.indexOf(key) < 0) {
+            throw "statfields incomplete";
+        }
+    }
     util.playerstats.mean_loaded = true;
     console.log("Player average stats loaded");
 });
@@ -140,7 +147,8 @@ function normalizeAverageStats(avgstats, lane, role) {
     var globalstds = getGlobalStds(lane, role);
 
     for(var key in avgstats) {
-        avgstatsnorm[key] = (avgstats[key] - globalavgs[key])/globalstds[key];
+        var rawnorm = 1 + (avgstats[key] - globalavgs[key])/globalstds[key];
+        avgstatsnorm[key] = 1.5 + Math.sign(rawnorm)*Math.log(Math.abs(rawnorm));
     }
 
     return avgstatsnorm;
@@ -150,4 +158,11 @@ function loadPlayerStats(summonerID, callback) {
     d3.json("data/playerstats/" + summonerID + ".json", function(err, data) {
         callback(err, {"SummonerID": summonerID, "Stats": data});
     });
+}
+
+function keyToString(key) {
+    if(key in util.statkeymap) {
+        return util.statkeymap[key];
+    }
+    return key;
 }

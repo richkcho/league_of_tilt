@@ -38,3 +38,9 @@ I then went back over my matches and processed them into premades. There were a 
 - Number of 5: 124 (8%)
 
 tl;dr Only 8% of games in high elo with a premade 5 are vs another premade 5. Nearly half of the games are premade 5 vs 3 or 5 solo players. This is unfortunate for the competitive scene in a game that tries to utilize a "Dynamic Queue" similar to what League of Legends is doing, since the high-elo part of the competitive scene suffers from these matchmaking imbalances. 
+
+----------
+
+## Extra:
+
+There are also some _interesting_ structures in the graph. After applying force layout on the graph to get a better image, I found [this](https://github.com/richkcho/league_of_tilt/blob/master/other/tyxwx.png). This shows many groups of four that never have been recorded playing at the master/challenger elo except for with one fifth player, who has played many games with other master or challenger players. I can't say with certainty what is going on, but it is definitely not a randomly generated structure. 

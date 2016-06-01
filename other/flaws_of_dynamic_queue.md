@@ -53,3 +53,24 @@ tl;dr Only 6% of games in high elo with a premade 5 are vs another premade 5. Ov
 ## Extra:
 
 There are also some _interesting_ structures in the graph. After applying force layout on the graph to get a better image, I found [this](https://github.com/richkcho/league_of_tilt/blob/master/other/tyxwx.png). This shows many groups of four that never have been recorded playing at the master/challenger elo except for with one fifth player, who has played many games with other master or challenger players. I can't say with certainty what is going on, but it is definitely not a randomly generated structure. 
+
+---------
+
+# Results Part 2: Limiting to 3-man Premades
+
+So Riot decided to limit the premade size to three as a band-aid approach to fix the problems elaborated above. The natural question is is this fair?
+
+I ran the same analysis on the dataset but this time focusing on 3-man premades. There were 8170 games with at least one 3-man premade (excluding any games with 4 or 5 man premade). The breakdown of the premade distributions of teams playing against a team with a 3-man premade were:
+
+* 5 solo: 4012 (49%)
+* 1 duo, 3 solo: 2978 (36%)
+* 2 duo, 1 solo: 548 (7%)
+* a group with a 3-man premade: 632 (8%)
+
+Win rates were as follows:
+
+* vs 5 solo: 61% (2464/4012)
+* 1 duo, 3 solo: 54% (1604/2978)
+* 2 duo, 1 solo: 52% (386/548)
+
+tl;dr 3 man premade vs 3 man premade happened only 8% of the time. Half of the games were vs 5 solo, with the dissapointing win-rate of 61% (or awesome, depends on what stance you take). 
